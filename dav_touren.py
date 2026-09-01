@@ -319,6 +319,37 @@ def _parse_fn_difficulty(html: str) -> str:
     return _shorten_fn_difficulty(unescape(match.group(1)).strip())
 
 
+_FN_TITLE_CATEGORY_HINTS = [
+    (re.compile(r"fitness|gymnastik", re.I), "Fitness"),
+]
+
+# Klettern/Bergsteigen-nahe Gruppen, deren Hütten-/Wochenendtermine trotz
+# fehlender Kategorie eher der Tourart als der Verwaltung zuzuordnen sind.
+_FN_CLIMBING_GROUPS = {"Kraxxler", "Jugendleistungsgruppe", "Kletter- u. Hochtourengruppe"}
+_FN_HUT_WEEKEND_RE = re.compile(r"hütte|wochenende", re.I)
+
+
+def _fn_category_fallback(title: str, group: str) -> str:
+    """Rät eine Tourart für FN-Termine ohne jede Kategoriezuordnung.
+
+    Manche Termine (Redaktionsschluss, Vollversammlungen, Sektionsfeste, ...)
+    tauchen auf keiner der Bergsportart- oder Gruppen-Unterseiten auf, weil
+    sie keine Sporttour im engeren Sinn sind. Ein paar Fälle lassen sich
+    trotzdem inhaltlich zuordnen: "Fitnessgymnastik" eindeutig am Titel, ein
+    Hütten-/Wochenendtermin einer Kletter-/Bergsteigengruppe (z.B. "Kraxxler")
+    als Bergsteigen. Alles übrige fällt auf "Sektion" als allgemeine,
+    nicht-sportliche Sektionsveranstaltung zurück.
+    """
+    for pattern, category in _FN_TITLE_CATEGORY_HINTS:
+        if pattern.search(title):
+            return category
+    if _FN_HUT_WEEKEND_RE.search(title) and any(
+        g in _FN_CLIMBING_GROUPS for g in group.split("/")
+    ):
+        return "Bergsteigen"
+    return "Sektion"
+
+
 def fetch_fn_tour_detail(
     session: requests.Session, path: str, category: str = "", group: str = ""
 ) -> Tour | None:
@@ -333,12 +364,13 @@ def fetch_fn_tour_detail(
             if end_date == date:
                 end_date = ""
             description = unescape(block.get("description") or "").strip()
+            title = unescape(block.get("name") or "").strip()
             return Tour(
                 section="DAV Friedrichshafen",
-                title=unescape(block.get("name") or "").strip(),
+                title=title,
                 date=date,
                 url=url,
-                category=category,
+                category=category or _fn_category_fallback(title, group),
                 group=group,
                 difficulty=_parse_fn_difficulty(resp.text),
                 end_date=end_date,
