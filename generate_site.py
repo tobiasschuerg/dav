@@ -98,8 +98,15 @@ def main(argv: list[str] | None = None) -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
     tours_path = output_dir / "tours.json"
     index_path = output_dir / "index.html"
+    # 404.html ist eine identische Kopie von index.html: GitHub Pages liefert sie für
+    # jeden nicht existierenden Pfad aus (z.B. /friedrichshafen), sodass die per
+    # history.pushState gesetzten, sektionsspezifischen URLs auch bei direktem
+    # Aufruf/Reload funktionieren, statt einer echten 404-Seite.
+    not_found_path = output_dir / "404.html"
 
-    index_path.write_text(TEMPLATE_PATH.read_text(encoding="utf-8"), encoding="utf-8")
+    template_html = TEMPLATE_PATH.read_text(encoding="utf-8")
+    index_path.write_text(template_html, encoding="utf-8")
+    not_found_path.write_text(template_html, encoding="utf-8")
 
     last_generated = _existing_generated_at(tours_path)
     if not args.force and last_generated is not None:

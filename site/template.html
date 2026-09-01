@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DAV Touren Finder – Friedrichshafen, Ravensburg, Überlingen & Lindau</title>
+<title>DAV Touren-Finder Bodensee</title>
 <meta name="description" content="Aktuelle Touren, Kurse und Veranstaltungen der DAV-Sektionen Friedrichshafen, Ravensburg, Überlingen und Lindau an einem Ort, automatisch aktualisiert.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -526,8 +526,8 @@
   <nav class="rail-nav" id="railNav" aria-label="Zeitleiste"></nav>
 
   <header class="top">
-    <h1>DAV Touren Finder</h1>
-    <p class="sub">Touren, Kurse und Veranstaltungen der DAV-Sektionen Friedrichshafen, Ravensburg, Überlingen und Lindau.</p>
+    <h1>DAV Touren-Finder Bodensee</h1>
+    <p class="sub">Touren, Kurse und Veranstaltungen der DAV-Sektionen <a href="https://www.dav-fn.de" target="_blank" rel="noopener">Friedrichshafen</a>, <a href="https://www.dav-ravensburg.info" target="_blank" rel="noopener">Ravensburg</a>, <a href="https://www.dav-ueberlingen.de" target="_blank" rel="noopener">Überlingen</a> und <a href="https://alpenverein-lindau.de" target="_blank" rel="noopener">Lindau</a> an einem Ort.</p>
   </header>
 
   <div class="controls">
@@ -584,6 +584,30 @@
     return "rv";
   }
 
+  // — URL-Routing: die aktive Sektion steckt als letztes Pfadsegment in der URL
+  // (z.B. "/dav/friedrichshafen"), damit gefilterte Ansichten teilbar sind. Der
+  // GitHub-Pages-404-Fallback (siehe 404.html) liefert dafür denselben Inhalt aus.
+  const SECTION_SLUGS = { fn: "friedrichshafen", rv: "ravensburg", ue: "ueberlingen", li: "lindau" };
+  const SLUG_TO_SECTION = Object.fromEntries(Object.entries(SECTION_SLUGS).map(([k, v]) => [v, k]));
+
+  function currentBasePath() {
+    const parts = location.pathname.split("/").filter(Boolean);
+    if (parts.length && SLUG_TO_SECTION[parts[parts.length - 1].toLowerCase()]) parts.pop();
+    return "/" + (parts.length ? parts.join("/") + "/" : "");
+  }
+
+  const BASE_PATH = currentBasePath();
+
+  function sectionFromPath() {
+    const parts = location.pathname.split("/").filter(Boolean);
+    if (!parts.length) return "all";
+    return SLUG_TO_SECTION[parts[parts.length - 1].toLowerCase()] || "all";
+  }
+
+  function pathForSection(key) {
+    return key === "all" ? BASE_PATH : BASE_PATH + SECTION_SLUGS[key];
+  }
+
   function categoriesOf(tour) {
     return (tour.category || "").split(/[/,]/).map(c => c.trim()).filter(Boolean);
   }
@@ -613,6 +637,7 @@
   function buildCategoryChips() {
     const counts = new Map();
     for (const t of TOURS) {
+      if (activeSection !== "all" && sectionKey(t.section) !== activeSection) continue;
       for (const cat of categoriesOf(t)) {
         counts.set(cat, (counts.get(cat) || 0) + 1);
       }
@@ -628,7 +653,7 @@
     `).join("");
   }
 
-  let activeSection = "all";
+  let activeSection = sectionFromPath();
   let activeCategories = new Set();
   let categoryCounts = [];
   let query = "";
@@ -757,11 +782,26 @@
     }
   }
 
+  function syncSegmentedButtons() {
+    for (const btn of document.querySelectorAll("#segmented button")) {
+      btn.setAttribute("aria-pressed", String(btn.dataset.key === activeSection));
+    }
+  }
+
   document.getElementById("segmented").addEventListener("click", e => {
     const btn = e.target.closest("button");
-    if (!btn) return;
+    if (!btn || btn.dataset.key === activeSection) return;
     activeSection = btn.dataset.key;
-    [...document.querySelectorAll("#segmented button")].forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    syncSegmentedButtons();
+    history.pushState({ section: activeSection }, "", pathForSection(activeSection));
+    buildCategoryChips();
+    render();
+  });
+
+  window.addEventListener("popstate", () => {
+    activeSection = sectionFromPath();
+    syncSegmentedButtons();
+    buildCategoryChips();
     render();
   });
 
@@ -789,6 +829,7 @@
 
   window.addEventListener("scroll", updateActiveMonth, { passive: true });
 
+  syncSegmentedButtons();
   render();
 
   fetch("tours.json")
