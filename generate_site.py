@@ -21,6 +21,7 @@ import dav_touren
 TEMPLATE_PATH = Path(__file__).parent / "site" / "template.html"
 MAX_DESCRIPTION_LENGTH = 220
 MIN_TOURS_PER_SECTION = 5
+MIN_REFRESH_INTERVAL = datetime.timedelta(hours=2)
 
 
 def _trim_description(text: str) -> str:
@@ -56,6 +57,16 @@ def fetch_all_tours() -> list[dav_touren.Tour]:
     return tours
 
 
+def _existing_generated_at(tours_path: Path) -> datetime.datetime | None:
+    if not tours_path.exists():
+        return None
+    try:
+        data = json.loads(tours_path.read_text(encoding="utf-8"))
+        return datetime.datetime.strptime(data["generated_at"], "%d.%m.%Y %H:%M")
+    except (json.JSONDecodeError, KeyError, ValueError, OSError):
+        return None
+
+
 def build_payload(tours: list[dav_touren.Tour]) -> dict:
     payload = []
     for tour in tours:
@@ -74,21 +85,36 @@ def main(argv: list[str] | None = None) -> int:
         default="docs",
         help="Zielverzeichnis für index.html und tours.json. Standard: docs",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Touren auch dann neu abrufen, wenn die bestehenden Daten jünger als "
+        f"{MIN_REFRESH_INTERVAL} sind.",
+    )
     args = parser.parse_args(argv)
-
-    tours = fetch_all_tours()
-    payload = build_payload(tours)
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
-
     tours_path = output_dir / "tours.json"
+    index_path = output_dir / "index.html"
+
+    index_path.write_text(TEMPLATE_PATH.read_text(encoding="utf-8"), encoding="utf-8")
+
+    last_generated = _existing_generated_at(tours_path)
+    if not args.force and last_generated is not None:
+        age = datetime.datetime.now() - last_generated
+        if age < MIN_REFRESH_INTERVAL:
+            print(
+                f"Touren sind erst {age} alt (< {MIN_REFRESH_INTERVAL}), kein "
+                "erneuter Abruf. --force erzwingt einen Refresh."
+            )
+            return 0
+
+    tours = fetch_all_tours()
+    payload = build_payload(tours)
     tours_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-
-    index_path = output_dir / "index.html"
-    index_path.write_text(TEMPLATE_PATH.read_text(encoding="utf-8"), encoding="utf-8")
 
     print(f"{len(tours)} Touren -> {tours_path} (Template -> {index_path})")
     return 0

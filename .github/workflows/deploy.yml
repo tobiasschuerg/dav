@@ -3,14 +3,12 @@ name: Deploy Tourenprogramm
 on:
   schedule:
     - cron: "0 5 * * 1" # jeden Montag, 05:00 UTC
-  workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths:
-      - "dav_touren.py"
-      - "generate_site.py"
-      - "site/template.html"
-      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Touren neu abrufen, auch wenn die Daten noch frisch sind"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -35,7 +33,7 @@ jobs:
         run: pip install requests
 
       - name: Generate site
-        run: python3 generate_site.py --output-dir docs
+        run: python3 generate_site.py --output-dir docs ${{ inputs.force && '--force' || '' }}
 
       - name: Commit and push if changed
         run: |
