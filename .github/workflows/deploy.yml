@@ -45,6 +45,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Änderungen am Tourenprogramm."
           else
-            git commit -m "Tourenprogramm aktualisiert ($(date -u +'%Y-%m-%d'))"
+            git commit -m "chore(data): Tourenprogramm aktualisiert ($(date -u +'%Y-%m-%d'))"
             git push
           fi
