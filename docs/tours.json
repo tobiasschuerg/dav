@@ -1,5 +1,5 @@
 {
-  "generated_at": "01.09.2026 21:11",
+  "generated_at": "01.09.2026 19:13",
   "tours": [
     {
       "section": "DAV Friedrichshafen",
@@ -16,20 +16,6 @@
       "description": "Mondspitze (1967 m) **AP: Bürserberg-TschenglaTP: Juhe, 7:00 Uhr"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Hinderrugg/Chäserrugg und Gamsalp - 2026",
-      "date": "2026-09-02",
-      "url": "https://www.dav-ravensburg.info/tourdetails/hinderrugg-chaeserrugg-2026.html",
-      "time": "06:30 Uhr",
-      "status": "Es gibt noch ein paar Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-08-31",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Kundalini-Yoga Mittwoch",
       "date": "2026-09-02",
@@ -41,48 +27,6 @@
       "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Halbtagstour: Berg+Tal zwischen Blitzenreute und Wolpertswende - 2026",
-      "date": "2026-09-03",
-      "url": "https://www.dav-ravensburg.info/tourdetails/halbtagstour-berg-tal-zwischen-blitzenreute-und-wolpertswende-2026.html",
-      "time": "10:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T1",
-      "end_date": "",
-      "registration_deadline": "2026-09-01",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Klettersteigdurchquerung Rosengarten - 2026",
-      "date": "2026-09-03",
-      "url": "https://www.dav-ravensburg.info/tourdetails/klettersteigdurchquerung-rosengarten-2026.html",
-      "time": "06:00 Uhr",
-      "status": "Tour ausgebucht",
-      "category": "Klettersteig",
-      "group": "",
-      "difficulty": "D",
-      "end_date": "2026-09-07",
-      "registration_deadline": "2026-07-22",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Wintertouren der Seniorengruppe - 2026/2027",
-      "date": "2026-09-03",
-      "url": "https://www.dav-ravensburg.info/tourdetails/wintertourenplanung-senioren-2027.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-09-03",
       "description": ""
     },
     {
@@ -142,34 +86,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Speer - 2026",
-      "date": "2026-09-05",
-      "url": "https://www.dav-ravensburg.info/tourdetails/speer-2026.html",
-      "time": "06:00 Uhr",
-      "status": "Tour ausgebucht",
-      "category": "Wandern",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-08-26",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Trailrun 2-Tage am Klausenpass - 2026 TOUR GEÄNDERT - siehe Ersatztour",
-      "date": "2026-09-05",
-      "url": "https://www.dav-ravensburg.info/tourdetails/2-tage-am-klausenpass-2026.html",
-      "time": "07:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Trailrunning",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "2026-09-06",
-      "registration_deadline": "2026-08-19",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Boaleskopf 1576m",
       "date": "2026-09-06",
@@ -198,20 +114,6 @@
       "description": "Bogartenfirst (1811 m) Organisation: Dirk A., Jutta R. Anspruchsvolle Wanderung auf steilen Pfaden mit überraschenden AusblickenAP: Wasserauen; Anmeldung und VB: 3. September."
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Ersatztour: Trailrun im Alpsteingebirge - 2026",
-      "date": "2026-09-06",
-      "url": "https://www.dav-ravensburg.info/tourdetails/ersatztour-trailrun-im-alpsteingebirge-2026.html",
-      "time": "07:00 Uhr",
-      "status": "Tour ausgebucht",
-      "category": "Trailrunning",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-08-30",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Kundalini-Yoga Montag",
       "date": "2026-09-07",
@@ -223,20 +125,6 @@
       "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Hoher Freschen und zur Saluver Alpe - 2026",
-      "date": "2026-09-09",
-      "url": "https://www.dav-ravensburg.info/tourdetails/hoher-freschen-und-zur-saluver-alpe-2026.html",
-      "time": "06:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T2",
-      "end_date": "",
-      "registration_deadline": "2026-09-07",
       "description": ""
     },
     {
@@ -310,20 +198,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Roggspitze Alpinklettern - 2026",
-      "date": "2026-09-11",
-      "url": "https://www.dav-ravensburg.info/tourdetails/roggspitze-2026.html",
-      "time": "13:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Klettern",
-      "group": "",
-      "difficulty": "KA",
-      "end_date": "2026-09-12",
-      "registration_deadline": "2026-08-26",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Schnitzeljagd und Grillen",
       "date": "2026-09-11",
@@ -352,20 +226,6 @@
       "description": "Tourenwochenende Häfler HütteOrganisation: Jörg Z. Wanderungen im VerwallAP: Kopsstausee; SP: Friedrichshafener Hütte Anmeldung bis: 27.08.; VB: 03.September"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Gravelino Tour IV - 2026",
-      "date": "2026-09-12",
-      "url": "https://www.dav-ravensburg.info/tourdetails/gravelino-tour-iv-2026.html",
-      "time": "09:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-09-09",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Speer - auf den König der Voralpen mit anschließendem Baden und Grillen am Walensee",
       "date": "2026-09-12",
@@ -380,20 +240,6 @@
       "description": "Im Anschluss an die Tour werden wir noch einen Stopp am Walensee machen, wo wir baden und grillen können. Der Speer (1950m) am nördlichen Rand des Walensees im Kanton St. Gallen wird auch als König der Voralpen…"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Vilser Kegel - 2026",
-      "date": "2026-09-12",
-      "url": "https://www.dav-ravensburg.info/tourdetails/vilser-kegel-2026.html",
-      "time": "07:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Wandern",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-09-02",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Redaktionsschluß Programm und Mitteilungen für Herbst 2026",
       "date": "2026-09-13",
@@ -406,48 +252,6 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "Redaktionsschluss für „Touren- und Ausbildungsprogramm Winter 2026/27“   -   (Beiträge bitte ausschließlich an programm&#64;dav-fn.de) Redaktionsschluss für „Mitteilungen Herbst 2026“   -   (Beiträge bitte…"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Tourenwoche der Senioren Hohe Tauern- 2026",
-      "date": "2026-09-13",
-      "url": "https://www.dav-ravensburg.info/tourdetails/tourenwoche-der-senioren-hohe-tauern-2026.html",
-      "time": "07:30 Uhr",
-      "status": "Tour ausgebucht",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "2026-09-20",
-      "registration_deadline": "2026-02-05",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Gymnastik für Damen - 2026/2027",
-      "date": "2026-09-14",
-      "url": "https://www.dav-ravensburg.info/tourdetails/gymnastik-fuer-damen-20252026-1.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Gymnastik",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-12-10",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Konditionsgymnastik gemischte Gruppe - 2026/2027",
-      "date": "2026-09-14",
-      "url": "https://www.dav-ravensburg.info/tourdetails/konditionsgymnastik-gemischte-gruppe-20252026-1.html",
-      "time": "17:45 Uhr",
-      "status": "Es gibt noch ein paar Plätze",
-      "category": "Gymnastik",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-30",
-      "description": ""
     },
     {
       "section": "DAV Überlingen",
@@ -478,20 +282,6 @@
       "description": "Muttjöchle (2074 m) **AP: Kristberg (Silbertal)TP: Juhe, 7:30 Uhr"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Fitness für Kletterer 2026/2027",
-      "date": "2026-09-16",
-      "url": "https://www.dav-ravensburg.info/tourdetails/fitness-fuer-kletterer-20262027-1.html",
-      "time": "20:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Gymnastik",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-30",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Kundalini-Yoga Mittwoch",
       "date": "2026-09-16",
@@ -503,76 +293,6 @@
       "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Winterprogramm der Skitourengruppe - 2026/2027",
-      "date": "2026-09-16",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planungstreffen-winter-skitouren-20262027.html",
-      "time": "18:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Winterprogramm der Schneeschuhtouren-Gruppe - 2026/2027",
-      "date": "2026-09-17",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planungstreffen-schneeschuhtouren-winter-20262027.html",
-      "time": "18:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Trailrunning Gruppe Waldläufe - 2026",
-      "date": "2026-09-17",
-      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-2026-2.html",
-      "time": "17:50 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Trailrunning",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-10-22",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "ABGESAGT: Mehrseillängen Klettern an der Geierwand - 2026",
-      "date": "2026-09-18",
-      "url": "https://www.dav-ravensburg.info/tourdetails/mehrseillaengen-klettern-an-der-geierwand-2026.html",
-      "time": "14:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Klettern",
-      "group": "",
-      "difficulty": "KSM",
-      "end_date": "2026-09-20",
-      "registration_deadline": "2026-08-24",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "MTB Fiss - 2026",
-      "date": "2026-09-18",
-      "url": "https://www.dav-ravensburg.info/tourdetails/fiss.html",
-      "time": "07:00 Uhr",
-      "status": "Es gibt noch ein paar Plätze",
-      "category": "Mountainbike",
-      "group": "",
-      "difficulty": "S2",
-      "end_date": "2026-09-20",
-      "registration_deadline": "2026-06-26",
       "description": ""
     },
     {
@@ -601,20 +321,6 @@
       "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Gätterifirst Alpinklettern - 2026",
-      "date": "2026-09-19",
-      "url": "https://www.dav-ravensburg.info/tourdetails/gaetterifirst-2026.html",
-      "time": "14:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Klettern",
-      "group": "",
-      "difficulty": "KA",
-      "end_date": "2026-09-20",
-      "registration_deadline": "2026-09-02",
       "description": ""
     },
     {
@@ -702,34 +408,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "ACHTUNG - VORVERLEGT: Halbtagestour: Betznau und Schloss Gießen - 2026",
-      "date": "2026-09-22",
-      "url": "https://www.dav-ravensburg.info/tourdetails/halbtagstour-zur-schussenquelle-2026.html",
-      "time": "10:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T1",
-      "end_date": "",
-      "registration_deadline": "2026-09-22",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Outdoor-Kino - 2026",
-      "date": "2026-09-22",
-      "url": "https://www.dav-ravensburg.info/tourdetails/outdoor-kino-2026.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Athletiktraining Rennmannschaft",
       "date": "2026-09-23",
@@ -772,20 +450,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Warther Horn - 2026",
-      "date": "2026-09-23",
-      "url": "https://www.dav-ravensburg.info/tourdetails/warther-horn-2026.html",
-      "time": "06:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-09-21",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Freitagsausfahrt Mountainbike",
       "date": "2026-09-25",
@@ -797,20 +461,6 @@
       "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Hoher Ifen - 2026",
-      "date": "2026-09-26",
-      "url": "https://www.dav-ravensburg.info/tourdetails/hoher-ifen-2026.html",
-      "time": "06:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Wandern",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-09-23",
       "description": ""
     },
     {
@@ -826,34 +476,6 @@
       "end_date": "",
       "registration_deadline": "2026-09-24",
       "description": "Immenstädter Horn (1485 m) WanderungOrganisation: Angelika C. evtl. mit Besteigung Gschwender Horn, zurück über HornwegAP: Immenstaad; Anmeldung und VB: 24. September"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Tageswanderung Schöner Mann (Wendkopf) - 2026",
-      "date": "2026-09-26",
-      "url": "https://www.dav-ravensburg.info/tourdetails/tageswanderung-winterstaude-2026.html",
-      "time": "10:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-09-23",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "\"Bootstour\" am Stillen Bach - 2026",
-      "date": "2026-09-27",
-      "url": "https://www.dav-ravensburg.info/tourdetails/bootstour-am-stillen-bach-2026.html",
-      "time": "14:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-09-16",
-      "description": ""
     },
     {
       "section": "DAV Friedrichshafen",
@@ -881,20 +503,6 @@
       "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Halbtagstour: Aulendorf-Otterswang - 2026",
-      "date": "2026-09-29",
-      "url": "https://www.dav-ravensburg.info/tourdetails/halbtagstour-aulendorf-otterswang-2026.html",
-      "time": "09:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T1",
-      "end_date": "",
-      "registration_deadline": "2026-09-28",
       "description": ""
     },
     {
@@ -940,34 +548,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Stuiben-Steineberg und Bärenköpfle-Mittag - 2026",
-      "date": "2026-09-30",
-      "url": "https://www.dav-ravensburg.info/tourdetails/stuiben-steineberg-und-baerenkoepfle-mittag-2026.html",
-      "time": "07:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T3",
-      "end_date": "",
-      "registration_deadline": "2026-09-28",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Winterprogramm der Familiengruppe - 2026/27",
-      "date": "2026-10-01",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planung-winterprogramm-der-familiengruppe-202627.html",
-      "time": "20:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-09-30",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Freitagsausfahrt Mountainbike",
       "date": "2026-10-02",
@@ -1010,20 +590,6 @@
       "description": "FitnessgymnastikSchreienesch-Turnhalle, FriedrichshafenJeden Montag um 20:00 – 21:30 Uhr (außer Schulferien)"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Konditionsgymnastik für Herren - 2026/2027",
-      "date": "2026-10-05",
-      "url": "https://www.dav-ravensburg.info/tourdetails/konditionsgymnastik-fuer-herren-20262027.html",
-      "time": "20:15 Uhr",
-      "status": "Tour ausgebucht",
-      "category": "Gymnastik",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-12-02",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Kundalini-Yoga Montag",
       "date": "2026-10-05",
@@ -1033,20 +599,6 @@
       "category": "Yoga",
       "group": "",
       "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Regeltermin Ausbildungsthemen und Tourenreferat 04 - 2026",
-      "date": "2026-10-06",
-      "url": "https://www.dav-ravensburg.info/tourdetails/regeltermin-ausbildungsthemen-und-tourenreferat-04-2026.html",
-      "time": "20:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Ausbildung",
-      "group": "",
-      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1080,20 +632,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Senioren-Tourenleiter Abschlusswanderung - 2026",
-      "date": "2026-10-07",
-      "url": "https://www.dav-ravensburg.info/tourdetails/senioren-tourenleiter-abschlusswanderung-2026.html",
-      "time": "07:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "T2",
-      "end_date": "",
-      "registration_deadline": "2026-10-05",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Wanderung zum Erntedank-Teppich  in Otterswang **",
       "date": "2026-10-07",
@@ -1106,20 +644,6 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "Wanderung zum Erntedank-Teppich in Otterswang **AP: Aulendorf, BahnhofTP: Stadtbahnhof FN, 8:45 Uhr"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "MTB - Kids & Zwerge Camp - 2026",
-      "date": "2026-10-09",
-      "url": "https://www.dav-ravensburg.info/tourdetails/mtb-kids-zwerge-camp-2026.html",
-      "time": "13:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Mountainbike",
-      "group": "",
-      "difficulty": "S0",
-      "end_date": "2026-10-11",
-      "registration_deadline": "2026-09-30",
-      "description": ""
     },
     {
       "section": "DAV Überlingen",
@@ -1147,20 +671,6 @@
       "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Sportklettern Chiavenna - 2026",
-      "date": "2026-10-10",
-      "url": "https://www.dav-ravensburg.info/tourdetails/sportklettern-chiavenna-2026.html",
-      "time": "07:00 Uhr",
-      "status": "Es gibt noch ein paar Plätze",
-      "category": "Klettern",
-      "group": "",
-      "difficulty": "KSE",
-      "end_date": "2026-10-11",
-      "registration_deadline": "2026-09-24",
       "description": ""
     },
     {
@@ -1220,34 +730,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Senioren-Jahresabschluss - 2026",
-      "date": "2026-10-14",
-      "url": "https://www.dav-ravensburg.info/tourdetails/senioren-jahresabschluss-2026.html",
-      "time": "14:15 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-10-08",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Trailrunning Gruppe Waldläufe - 2026",
-      "date": "2026-10-15",
-      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-2026-3.html",
-      "time": "17:50 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Trailrunning",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-10-22",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Sonneck - Hofner Berg (1106 m)",
       "date": "2026-10-17",
@@ -1274,20 +756,6 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "Vereinsmeisterschaften im Sportklettern der Abteilung Klettersport im DAV-Kletterzentrum"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Ebnit Karren - 2026",
-      "date": "2026-10-18",
-      "url": "https://www.dav-ravensburg.info/tourdetails/ebnit-karren-2026.html",
-      "time": "08:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Wandern",
-      "group": "",
-      "difficulty": "T2",
-      "end_date": "",
-      "registration_deadline": "2026-10-14",
-      "description": ""
     },
     {
       "section": "DAV Friedrichshafen",
@@ -1346,34 +814,6 @@
       "description": "Rundwanderung bei Wangen **AP: Wangen, InnenstadtTP: Stadtbahnhof FN, Bus 300, 8:30 Uhr,(div. Zustiegsmöglichkeiten)"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Hohe Kugel - 2026",
-      "date": "2026-10-23",
-      "url": "https://www.dav-ravensburg.info/tourdetails/hohe-kugel-2026.html",
-      "time": "08:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Wandern",
-      "group": "",
-      "difficulty": "T2",
-      "end_date": "",
-      "registration_deadline": "2026-10-14",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Sportklettern Finale Ligure - 2026",
-      "date": "2026-10-24",
-      "url": "https://www.dav-ravensburg.info/tourdetails/sportklettern-finale-ligure-2026.html",
-      "time": "08:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Klettern",
-      "group": "",
-      "difficulty": "KSE",
-      "end_date": "2026-10-29",
-      "registration_deadline": "2026-10-07",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Wirtshauswanderung",
       "date": "2026-10-25",
@@ -1430,34 +870,6 @@
       "description": "Urbanstobel Horgenzell ***AP: Wanderparkplatz UrbanstobelTP: Juhe, 9:00 Uhr"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Gymnastik für Senior*innen - 2026/2027",
-      "date": "2026-11-05",
-      "url": "https://www.dav-ravensburg.info/tourdetails/gymnastik-fuer-seniorinnen-20262027.html",
-      "time": "17:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Gymnastik",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-12-02",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Sommertouren der Seniorengruppe - 2027",
-      "date": "2026-11-05",
-      "url": "https://www.dav-ravensburg.info/tourdetails/sommertourenplanung-senioren-2027.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Senioren",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-05",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Im Alpstein über dem Novembernebel – Familiengruppe I",
       "date": "2026-11-07",
@@ -1469,20 +881,6 @@
       "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Tourenleitertreffen in Steibis - 2026",
-      "date": "2026-11-07",
-      "url": "https://www.dav-ravensburg.info/tourdetails/tourenleitertreffen-in-steibis-mit-uebernachtung-2026.html",
-      "time": "13:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "keine",
-      "end_date": "2026-11-08",
-      "registration_deadline": "2026-10-25",
       "description": ""
     },
     {
@@ -1498,20 +896,6 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "Familien-HerbstwanderungZiel wird noch festgelegt und über den Newsletter bekanntgegebenOrganisation: Ursula Belser"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Sommerprogramm der Wandergruppe - 2027",
-      "date": "2026-11-10",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planungsabend-wandergruppe-27.html",
-      "time": "18:30 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-09",
-      "description": ""
     },
     {
       "section": "DAV Friedrichshafen",
@@ -1540,20 +924,6 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "JugendvollversammlungUm 19:30 Uhr in der Kletterhalle."
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Sommerprogramm der Familiengruppe - 2027",
-      "date": "2026-11-12",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planung-sommerprogramm-der-familiengruppe-2027.html",
-      "time": "20:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-11",
-      "description": ""
     },
     {
       "section": "DAV Friedrichshafen",
@@ -1598,34 +968,6 @@
       "description": "Kleine Möggers-Runde **Hochberg - Schlüssellehen und zurückAP: MöggersTP: wird noch festgelegtAnmeldung per Mail bis 15.11."
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "EOFT European Outdoor Filmtour",
-      "date": "2026-11-21",
-      "url": "https://www.dav-ravensburg.info/tourdetails/eoft-european-outdoor-filmtour.html",
-      "time": "15:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Vortrag",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "EOFT European Outdoor Filmtour",
-      "date": "2026-11-21",
-      "url": "https://www.dav-ravensburg.info/tourdetails/eoft-european-outdoor-filmtour-1.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Vortrag",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Familiengruppe II – Nachtwanderung mit Winterfeuer",
       "date": "2026-11-21",
@@ -1654,62 +996,6 @@
       "description": "Matona (1998 m)Organisation: Stefan H.  Am Garnitzabach hoch und über den sonnigen SO-Grat zurückAP: Innerlaterns; Anmeldung und VB: 19. November"
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "Grundkurs Lawinen & Saisoneröffnungsskitour 01 - 2026/2027",
-      "date": "2026-11-26",
-      "url": "https://www.dav-ravensburg.info/tourdetails/grundkurs-lawinen-saisoneroeffnungsskitour-01-20262027.html",
-      "time": "16:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Ausbildung",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "2026-11-29",
-      "registration_deadline": "2026-11-19",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Planungstreffen Sommerprogramm der Kletter-, Bergsteiger- und Hochtouren-Gruppen - 2027",
-      "date": "2026-11-26",
-      "url": "https://www.dav-ravensburg.info/tourdetails/planung-sommerprogramm-klettern-bergsteigen-2027.html",
-      "time": "19:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "2026-11-25",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Grundkurs Lawinen & Saisoneröffnungsskitour 02 - 2026/2027",
-      "date": "2026-12-03",
-      "url": "https://www.dav-ravensburg.info/tourdetails/grundkurs-lawinen-saisoneroeffnungsskitour-02-20262027.html",
-      "time": "16:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Ausbildung",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "2026-12-06",
-      "registration_deadline": "2026-11-19",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Nikolaushütte - 2026",
-      "date": "2026-12-04",
-      "url": "https://www.dav-ravensburg.info/tourdetails/nikolaushuette-20262027.html",
-      "time": "14:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Familie",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "2026-12-06",
-      "registration_deadline": "2026-11-25",
-      "description": ""
-    },
-    {
       "section": "DAV Friedrichshafen",
       "title": "Nikolauswochenende auf’m Lank",
       "date": "2026-12-04",
@@ -1722,20 +1008,6 @@
       "end_date": "2026-12-06",
       "registration_deadline": "",
       "description": "Nikolauswochenende auf’m LankOrganisation: Ann-So, Gerrit &amp; Thies"
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Grundkurs Lawinen & Saisoneröffnungsskitour 03 - 2026/2027",
-      "date": "2026-12-10",
-      "url": "https://www.dav-ravensburg.info/tourdetails/grundkurs-lawinen-saisoneroeffnungsskitour-03-20262027.html",
-      "time": "16:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Ausbildung",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "2026-12-13",
-      "registration_deadline": "2026-11-19",
-      "description": ""
     },
     {
       "section": "DAV Überlingen",
@@ -1752,20 +1024,6 @@
       "description": ""
     },
     {
-      "section": "DAV Ravensburg",
-      "title": "EOFT European Outdoor Filmtour",
-      "date": "2027-01-17",
-      "url": "https://www.dav-ravensburg.info/tourdetails/eoft-european-outdoor-filmtour-2.html",
-      "time": "15:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Vortrag",
-      "group": "",
-      "difficulty": "X",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
       "section": "DAV Überlingen",
       "title": "Familiengruppen Jahresbeginn: Klettern, Planen, Genießen",
       "date": "2027-01-17",
@@ -1777,20 +1035,6 @@
       "difficulty": "T0, T1",
       "end_date": "",
       "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Ravensburg",
-      "title": "Skitourengenuss im Valle Stura - 2027",
-      "date": "2027-03-06",
-      "url": "https://www.dav-ravensburg.info/tourdetails/skitourengenuss-im-valle-stura-20262027.html",
-      "time": "05:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "Skitour",
-      "group": "",
-      "difficulty": "ST-WS-K2",
-      "end_date": "2027-03-12",
-      "registration_deadline": "2027-01-27",
       "description": ""
     }
   ]

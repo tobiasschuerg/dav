@@ -20,6 +20,7 @@ import dav_touren
 
 TEMPLATE_PATH = Path(__file__).parent / "site" / "template.html"
 MAX_DESCRIPTION_LENGTH = 220
+MIN_TOURS_PER_SECTION = 5
 
 
 def _trim_description(text: str) -> str:
@@ -32,9 +33,22 @@ def _trim_description(text: str) -> str:
 
 def fetch_all_tours() -> list[dav_touren.Tour]:
     tours: list[dav_touren.Tour] = []
-    tours.extend(dav_touren.fetch_fn_tours())
-    tours.extend(dav_touren.fetch_rv_tours())
-    tours.extend(dav_touren.fetch_ue_tours())
+    for label, fetch in (
+        ("Friedrichshafen", dav_touren.fetch_fn_tours),
+        ("Ravensburg", dav_touren.fetch_rv_tours),
+        ("Überlingen", dav_touren.fetch_ue_tours),
+    ):
+        section_tours = fetch()
+        if len(section_tours) < MIN_TOURS_PER_SECTION:
+            # Ein Abruffehler (z.B. eine leere oder unerwartete Antwort) kann in den
+            # section-spezifischen Parsern zu einer leeren statt einer Exception
+            # führen; ohne diese Prüfung würde eine einzelne fehlgeschlagene Sektion
+            # sonst unbemerkt die bestehenden guten Daten überschreiben.
+            raise RuntimeError(
+                f"Nur {len(section_tours)} Touren von {label} erhalten - Abbruch "
+                "statt unvollständige Daten zu veröffentlichen."
+            )
+        tours.extend(section_tours)
 
     today = datetime.date.today().isoformat()
     tours = [t for t in tours if not t.date or t.date >= today]
