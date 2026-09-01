@@ -105,6 +105,11 @@ _CATEGORY_ALIASES = {
 # reine Saisonangabe statt einer Tourart) und daher ganz entfernt statt umbenannt werden.
 _CATEGORY_DROP = {"sommertour"}
 
+# Kategorien, die eigentlich eine Zielgruppe statt eine Tourart beschreiben (z.B.
+# Ravensburgs "Senioren"-Kategorie) und daher sektionsübergreifend ins group-Feld
+# verschoben werden, statt als Tourart-Filter zu erscheinen.
+_GROUP_LIKE_CATEGORIES = {"senioren"}
+
 
 def _normalize_category(category: str) -> str:
     """Vereinheitlicht Tourart-Bezeichnungen über alle Sektionen hinweg.
@@ -129,6 +134,25 @@ def _normalize_category(category: str) -> str:
     return "/".join(normalized)
 
 
+def _split_group_like(category: str, group: str) -> tuple[str, str]:
+    """Verschiebt Zielgruppen-Kategorien (z.B. "Senioren") vom category- ins
+
+    group-Feld, unabhängig davon, welche Sektion sie geliefert hat.
+    """
+    if not category:
+        return category, group
+    cat_parts = category.split("/")
+    moved = [p for p in cat_parts if p.lower() in _GROUP_LIKE_CATEGORIES]
+    if not moved:
+        return category, group
+    keep = [p for p in cat_parts if p.lower() not in _GROUP_LIKE_CATEGORIES]
+    group_parts = group.split("/") if group else []
+    for part in moved:
+        if part not in group_parts:
+            group_parts.append(part)
+    return "/".join(keep), "/".join(group_parts)
+
+
 @dataclasses.dataclass
 class Tour:
     section: str
@@ -147,6 +171,7 @@ class Tour:
     def __post_init__(self) -> None:
         self.category = _normalize_category(self.category)
         self.group = _normalize_category(self.group)
+        self.category, self.group = _split_group_like(self.category, self.group)
 
     def sort_key(self) -> tuple[str, str]:
         # Fehlende/unparsbare Daten landen am Ende statt den Sortierlauf zu crashen.
@@ -526,7 +551,9 @@ def _enrich_rv_details(session: requests.Session, tours: list[Tour], max_workers
             details = fetch_rv_tour_details(session, tour.url)
         except requests.RequestException:
             return
-        tour.category = _normalize_category(details.category)
+        tour.category, tour.group = _split_group_like(
+            _normalize_category(details.category), tour.group
+        )
         tour.difficulty = details.difficulty
         tour.end_date = details.end_date
         tour.registration_deadline = details.registration_deadline
