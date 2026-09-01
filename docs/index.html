@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tourenprogramm – DAV Friedrichshafen, Ravensburg & Überlingen</title>
+<title>DAV Touren Finder – Friedrichshafen, Ravensburg & Überlingen</title>
 <meta name="description" content="Aktuelle Touren, Kurse und Veranstaltungen der DAV-Sektionen Friedrichshafen, Ravensburg und Überlingen an einem Ort, automatisch aktualisiert.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%94%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -501,6 +501,7 @@
   }
 
   .tag-cat { color: var(--ink-muted); background: var(--surface-sunken); }
+  .tag-group { color: var(--ink-muted); background: transparent; border: 1px solid var(--border); }
   .tag-diff { color: var(--accent-strong); background: var(--accent-soft); }
   .tag-days { color: var(--accent-2-strong); background: var(--accent-2-soft); }
   .tag-good { color: var(--good); background: var(--good-soft); }
@@ -554,7 +555,7 @@
   <nav class="rail-nav" id="railNav" aria-label="Zeitleiste"></nav>
 
   <header class="top">
-    <h1>Tourenprogramm</h1>
+    <h1>DAV Touren Finder</h1>
     <p class="sub">Alle Touren, Kurse und Veranstaltungen von DAV Friedrichshafen, DAV Ravensburg und DAV Überlingen an einem Ort, direkt von den Sektionswebsites abgerufen.</p>
     <div class="stats" id="stats"></div>
   </header>
@@ -747,6 +748,7 @@
               <div class="badge-row">
                 <span class="section-label" style="color: var(--${key})">${SECTION_INFO[key].label}</span>
                 ${t.category ? `<span class="tag tag-cat">${escapeHtml(t.category)}</span>` : ""}
+                ${t.group ? `<span class="tag tag-group">${escapeHtml(t.group)}</span>` : ""}
                 ${t.difficulty ? `<span class="tag tag-diff">${escapeHtml(t.difficulty)}</span>` : ""}
                 ${days ? `<span class="tag tag-days">${days} Tage</span>` : ""}
                 ${soldOut ? `<span class="tag tag-soldout">Ausgebucht</span>` : ""}
