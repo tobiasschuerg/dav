@@ -132,7 +132,6 @@ class Tour:
     time: str = ""
     status: str = ""
     category: str = ""
-    group: str = ""
     difficulty: str = ""
     end_date: str = ""
     registration_deadline: str = ""
@@ -140,7 +139,6 @@ class Tour:
 
     def __post_init__(self) -> None:
         self.category = _normalize_category(self.category)
-        self.group = _normalize_category(self.group)
 
     def sort_key(self) -> tuple[str, str]:
         # Fehlende/unparsbare Daten landen am Ende statt den Sortierlauf zu crashen.
@@ -274,9 +272,7 @@ def _parse_fn_difficulty(html: str) -> str:
     return _shorten_fn_difficulty(unescape(match.group(1)).strip())
 
 
-def fetch_fn_tour_detail(
-    session: requests.Session, path: str, category: str = "", group: str = ""
-) -> Tour | None:
+def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "") -> Tour | None:
     url = FN_BASE_URL + path
     resp = session.get(url, timeout=REQUEST_TIMEOUT)
     if not resp.ok:
@@ -294,7 +290,6 @@ def fetch_fn_tour_detail(
                 date=date,
                 url=url,
                 category=category,
-                group=group,
                 difficulty=_parse_fn_difficulty(resp.text),
                 end_date=end_date,
                 registration_deadline=_parse_fn_registration_deadline(description, date),
@@ -368,16 +363,14 @@ def fetch_fn_tours(max_workers: int = 8) -> list[Tour]:
     paths = fetch_fn_tour_urls(session)
     category_map = fetch_fn_category_map(session)
     group_map = fetch_fn_group_map(session)
+    combined_map = {
+        path: "/".join(filter(None, [category_map.get(path, ""), group_map.get(path, "")]))
+        for path in paths
+    }
     tours: list[Tour] = []
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
-            pool.submit(
-                fetch_fn_tour_detail,
-                session,
-                path,
-                category_map.get(path, ""),
-                group_map.get(path, ""),
-            ): path
+            pool.submit(fetch_fn_tour_detail, session, path, combined_map.get(path, "")): path
             for path in paths
         }
         for future in as_completed(futures):
@@ -694,7 +687,6 @@ def _print_text(tours: Iterable[Tour]) -> None:
             current_section = tour.section
             print(f"\n== {current_section} ==")
         category_part = f" ({tour.category})" if tour.category else ""
-        group_part = f" <{tour.group}>" if tour.group else ""
         difficulty_part = f" [{tour.difficulty}]" if tour.difficulty else ""
         days = _days_span(tour)
         days_part = f" [{days} Tage]" if days else ""
@@ -706,7 +698,7 @@ def _print_text(tours: Iterable[Tour]) -> None:
         extra = f"  [{tour.status}]" if tour.status else ""
         time_part = f" {tour.time}" if tour.time else ""
         print(
-            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{group_part}{difficulty_part}{days_part}  "
+            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{difficulty_part}{days_part}  "
             f"{tour.url}{extra}{deadline_part}"
         )
 
@@ -719,7 +711,6 @@ def _write_csv(tours: Iterable[Tour], path: str) -> None:
         "time",
         "title",
         "category",
-        "group",
         "difficulty",
         "status",
         "registration_deadline",
