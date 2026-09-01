@@ -94,10 +94,16 @@ _CATEGORY_ALIASES = {
     "wanderung": "Wandern",
     "bergwanderung": "Wandern",
     "seniorengruppe": "Senioren",
-    "jdav": "Rennmannschaft",
     "kooperation": "Vortrag",
     "gletschertour": "Hochtour",
+    "jdav": "Fitness",
+    "rennmannschaft": "Fitness",
+    "gymnastik": "Fitness",
 }
+
+# Kategorien, die als eigenständiger Tourart-Tag keinen Mehrwert bieten (z.B. eine
+# reine Saisonangabe statt einer Tourart) und daher ganz entfernt statt umbenannt werden.
+_CATEGORY_DROP = {"sommertour"}
 
 
 def _normalize_category(category: str) -> str:
@@ -114,7 +120,7 @@ def _normalize_category(category: str) -> str:
     normalized: list[str] = []
     for part in re.split(r"[/,]", category):
         part = part.strip()
-        if not part:
+        if not part or part.lower() in _CATEGORY_DROP:
             continue
         canonical = _CATEGORY_ALIASES.get(part.lower(), part)
         if canonical not in seen:
