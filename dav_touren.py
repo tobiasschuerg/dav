@@ -206,18 +206,6 @@ def _parse_fn_registration_deadline(description: str, tour_date: str) -> str:
 _FN_VORAUSSETZUNGEN_RE = re.compile(
     r"Voraussetzungen\s*</h2>\s*<div>\s*<p><a[^>]*>([^<]*)</a>", re.S
 )
-_FN_SAC_PREFIX_RE = re.compile(r"^SAC\s+\d+\s+\S+\s+(\S.*)$")
-
-
-def _shorten_fn_difficulty(text: str) -> str:
-    """Kürzt "SAC 23 Wanderung T4-" auf die reine Gradangabe "T4-".
-
-    Die Voraussetzungen-Seite präfixt die Gradangabe mit der SAC-Kursnummer und
-    der Tourart (z.B. "SAC 12 Klettern UIAA-V-"); nur der Grad selbst ist
-    hier von Interesse.
-    """
-    match = _FN_SAC_PREFIX_RE.match(text)
-    return match.group(1) if match else text
 
 
 def _parse_fn_difficulty(html: str) -> str:
@@ -225,9 +213,7 @@ def _parse_fn_difficulty(html: str) -> str:
     "Voraussetzungen"-Abschnitt der Detailseite; nicht jede Tour hat eine.
     """
     match = _FN_VORAUSSETZUNGEN_RE.search(html)
-    if not match:
-        return ""
-    return _shorten_fn_difficulty(unescape(match.group(1)).strip())
+    return unescape(match.group(1)).strip() if match else ""
 
 
 def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "") -> Tour | None:
