@@ -1,5 +1,5 @@
 {
-  "generated_at": "01.09.2026 19:10",
+  "generated_at": "01.09.2026 20:43",
   "tours": [
     {
       "section": "DAV Friedrichshafen",
@@ -9,6 +9,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": "Mondspitze (1967 m) **AP: Bürserberg-TschenglaTP: Juhe, 7:00 Uhr"
@@ -21,6 +22,7 @@
       "time": "06:30 Uhr",
       "status": "Es gibt noch ein paar Plätze",
       "category": "Senioren",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-08-31",
       "description": ""
@@ -33,6 +35,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -45,6 +48,7 @@
       "time": "10:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-09-01",
       "description": ""
@@ -57,6 +61,7 @@
       "time": "06:00 Uhr",
       "status": "Tour ausgebucht",
       "category": "Klettersteig",
+      "difficulty": "D",
       "end_date": "2026-09-07",
       "registration_deadline": "2026-07-22",
       "description": ""
@@ -69,6 +74,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-09-03",
       "description": ""
@@ -81,6 +87,7 @@
       "time": "",
       "status": "",
       "category": "Wandern/Sommertour",
+      "difficulty": "T3",
       "end_date": "2026-09-05",
       "registration_deadline": "",
       "description": ""
@@ -93,6 +100,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T3",
       "end_date": "2026-09-06",
       "registration_deadline": "",
       "description": ""
@@ -105,6 +113,7 @@
       "time": "",
       "status": "",
       "category": "Mountainbike",
+      "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -117,6 +126,7 @@
       "time": "",
       "status": "",
       "category": "Klettersteig/Sommertour",
+      "difficulty": "T3, T4",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -129,6 +139,7 @@
       "time": "06:00 Uhr",
       "status": "Tour ausgebucht",
       "category": "Wandern",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-08-26",
       "description": ""
@@ -141,6 +152,7 @@
       "time": "07:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Trailrunning",
+      "difficulty": "X",
       "end_date": "2026-09-06",
       "registration_deadline": "2026-08-19",
       "description": ""
@@ -153,6 +165,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2-",
       "end_date": "",
       "registration_deadline": "",
       "description": "Mindestteilnehmerzahl: 41. Tag Zielort Bad HindelangAufstieg 700 Hm - Abstieg 700 Hm - Dauer 6 Std - Länge 11 Km Verlauf: Von bad Hindelang über Bildstöckle und Tiefenbacher Eck."
@@ -165,6 +178,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T4 (T5)",
       "end_date": "",
       "registration_deadline": "2026-09-03",
       "description": "Bogartenfirst (1811 m) Organisation: Dirk A., Jutta R. Anspruchsvolle Wanderung auf steilen Pfaden mit überraschenden AusblickenAP: Wasserauen; Anmeldung und VB: 3. September."
@@ -177,6 +191,7 @@
       "time": "07:00 Uhr",
       "status": "Tour ausgebucht",
       "category": "Trailrunning",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-08-30",
       "description": ""
@@ -189,6 +204,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -201,6 +217,7 @@
       "time": "06:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-09-07",
       "description": ""
@@ -213,6 +230,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -225,6 +243,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Rösslerweiher **AP: Weingarten, Freibad NessenrebenTP: Juhe, 9:00 Uhr"
@@ -237,6 +256,7 @@
       "time": "",
       "status": "",
       "category": "Bergsteigen",
+      "difficulty": "T4-",
       "end_date": "2026-09-13",
       "registration_deadline": "",
       "description": "Mindestteilnehmerzahl: 31. Tag Zielort ZwinglipasshütteAufstieg 900 Hm - Dauer 3 Std"
@@ -249,6 +269,7 @@
       "time": "",
       "status": "",
       "category": "Mountainbike",
+      "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -261,6 +282,7 @@
       "time": "",
       "status": "",
       "category": "Hochtour/Gletschertour/Sommertour",
+      "difficulty": "T3",
       "end_date": "2026-09-13",
       "registration_deadline": "",
       "description": ""
@@ -273,6 +295,7 @@
       "time": "13:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Klettern",
+      "difficulty": "KA",
       "end_date": "2026-09-12",
       "registration_deadline": "2026-08-26",
       "description": ""
@@ -285,6 +308,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "Schnitzeljagd und GrillenAb 16 Uhr    Organisation: Nicole"
@@ -297,6 +321,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T4",
       "end_date": "2026-09-13",
       "registration_deadline": "2026-08-27",
       "description": "Tourenwochenende Häfler HütteOrganisation: Jörg Z. Wanderungen im VerwallAP: Kopsstausee; SP: Friedrichshafener Hütte Anmeldung bis: 27.08.; VB: 03.September"
@@ -309,6 +334,7 @@
       "time": "09:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-09-09",
       "description": ""
@@ -321,6 +347,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2+",
       "end_date": "",
       "registration_deadline": "",
       "description": "Im Anschluss an die Tour werden wir noch einen Stopp am Walensee machen, wo wir baden und grillen können. Der Speer (1950m) am nördlichen Rand des Walensees im Kanton St. Gallen wird auch als König der Voralpen…"
@@ -333,6 +360,7 @@
       "time": "07:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Wandern",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-09-02",
       "description": ""
@@ -345,6 +373,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "Redaktionsschluss für „Touren- und Ausbildungsprogramm Winter 2026/27“   -   (Beiträge bitte ausschließlich an programm&#64;dav-fn.de) Redaktionsschluss für „Mitteilungen Herbst 2026“   -   (Beiträge bitte…"
@@ -357,6 +386,7 @@
       "time": "07:30 Uhr",
       "status": "Tour ausgebucht",
       "category": "Senioren",
+      "difficulty": "T3",
       "end_date": "2026-09-20",
       "registration_deadline": "2026-02-05",
       "description": ""
@@ -369,6 +399,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Gymnastik",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-12-10",
       "description": ""
@@ -381,6 +412,7 @@
       "time": "17:45 Uhr",
       "status": "Es gibt noch ein paar Plätze",
       "category": "Gymnastik",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-30",
       "description": ""
@@ -393,6 +425,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -405,6 +438,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": "Muttjöchle (2074 m) **AP: Kristberg (Silbertal)TP: Juhe, 7:30 Uhr"
@@ -417,6 +451,7 @@
       "time": "20:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Gymnastik",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-30",
       "description": ""
@@ -429,6 +464,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -441,6 +477,7 @@
       "time": "18:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -453,6 +490,7 @@
       "time": "18:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -465,6 +503,7 @@
       "time": "17:50 Uhr",
       "status": "Genug freie Plätze",
       "category": "Trailrunning",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-10-22",
       "description": ""
@@ -477,6 +516,7 @@
       "time": "14:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Klettern",
+      "difficulty": "KSM",
       "end_date": "2026-09-20",
       "registration_deadline": "2026-08-24",
       "description": ""
@@ -489,6 +529,7 @@
       "time": "07:00 Uhr",
       "status": "Es gibt noch ein paar Plätze",
       "category": "Mountainbike",
+      "difficulty": "S2",
       "end_date": "2026-09-20",
       "registration_deadline": "2026-06-26",
       "description": ""
@@ -501,6 +542,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T4 / 1",
       "end_date": "2026-09-19",
       "registration_deadline": "2026-08-11",
       "description": "Panüeler (2859 m) mit Übernachtung auf der OberzalimhütteOrganisation: Christian Feil Freitag: Anreise und Aufstieg zur HütteSamstag: Aufstieg über den Straußensteig (ausgesetzter felsiger Steig mit…"
@@ -513,6 +555,7 @@
       "time": "",
       "status": "",
       "category": "Wandern/Sommertour",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -525,6 +568,7 @@
       "time": "14:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Klettern",
+      "difficulty": "KA",
       "end_date": "2026-09-20",
       "registration_deadline": "2026-09-02",
       "description": ""
@@ -537,6 +581,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T4-",
       "end_date": "2026-09-20",
       "registration_deadline": "",
       "description": "Zwei aussichtsreiche Gipfel im Rätikon.1. Tag Zielort Parkplatz Lünerseebahn - SchesaplanaAufstieg 1000 Hm - Dauer 5,5 Std Verlauf: Auffahrt mit der Bahn, Aufstieg zur Totalphütte und Deponierung eines Teils des…"
@@ -549,6 +594,7 @@
       "time": "",
       "status": "",
       "category": "Mountainbike",
+      "difficulty": "S1 (80)",
       "end_date": "",
       "registration_deadline": "",
       "description": "19. Sept. Tagestour Heiligenberg Organisation – Gerhard Maurer, Tobias Schmidt   Mit Integration Bikepark Überlingen. Von dort ist der Rückweg mit dem Zug möglich.  Bitte Vesper einpacken AP: Leimbach, Feuerwehrhaus1500…"
@@ -561,6 +607,7 @@
       "time": "",
       "status": "",
       "category": "Klettern",
+      "difficulty": "UIAA-V-",
       "end_date": "",
       "registration_deadline": "",
       "description": "Mindestteilnehmerzahl: 11. Tag Zielort NesselwängleAufstieg 900 Hm -  Dauer 8 Std -"
@@ -573,6 +620,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -585,6 +633,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "World Cleanup Day – ab 4 JahrenGemeinsam werden wir uns ein Stück Natur vornehmen und es von rumliegendem Müll befreien.Organisation Anna Schababerle"
@@ -597,6 +646,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -609,6 +659,7 @@
       "time": "10:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-09-22",
       "description": ""
@@ -621,6 +672,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -633,6 +685,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -645,6 +698,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Durch die Marienschlucht nach Bodman ***AP: Landesteg ÜberlingenTP: Stadtbahnhof FN, 9:45 Uhr"
@@ -657,6 +711,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -669,6 +724,7 @@
       "time": "06:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-09-21",
       "description": ""
@@ -681,6 +737,7 @@
       "time": "",
       "status": "",
       "category": "Mountainbike",
+      "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -693,6 +750,7 @@
       "time": "06:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Wandern",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-09-23",
       "description": ""
@@ -705,6 +763,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-09-24",
       "description": "Immenstädter Horn (1485 m) WanderungOrganisation: Angelika C. evtl. mit Besteigung Gschwender Horn, zurück über HornwegAP: Immenstaad; Anmeldung und VB: 24. September"
@@ -717,6 +776,7 @@
       "time": "10:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-09-23",
       "description": ""
@@ -729,6 +789,7 @@
       "time": "14:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-09-16",
       "description": ""
@@ -741,6 +802,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Toggenburger Klangweg – ab 4 JahrenImposante Erlebniswanderung auf dem Klangweg Toggenburg zwischen der Alp Sellamatt und Oberdorf.Organisation: Anna Schababerle"
@@ -753,6 +815,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -765,6 +828,7 @@
       "time": "09:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-09-28",
       "description": ""
@@ -777,6 +841,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Premiumweg „Grenzgänger“ **AP: Gailingen / HochrheinTP: Juhe, 9:00 Uhr"
@@ -789,6 +854,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -801,6 +867,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -813,6 +880,7 @@
       "time": "07:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T3",
       "end_date": "",
       "registration_deadline": "2026-09-28",
       "description": ""
@@ -825,6 +893,7 @@
       "time": "20:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-09-30",
       "description": ""
@@ -837,6 +906,7 @@
       "time": "",
       "status": "",
       "category": "Mountainbike",
+      "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -849,6 +919,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T2",
       "end_date": "2026-10-04",
       "registration_deadline": "",
       "description": ""
@@ -861,6 +932,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "FitnessgymnastikSchreienesch-Turnhalle, FriedrichshafenJeden Montag um 20:00 – 21:30 Uhr (außer Schulferien)"
@@ -873,6 +945,7 @@
       "time": "20:15 Uhr",
       "status": "Tour ausgebucht",
       "category": "Gymnastik",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-12-02",
       "description": ""
@@ -885,6 +958,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -897,6 +971,7 @@
       "time": "20:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Ausbildung",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -909,6 +984,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -921,6 +997,7 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -933,6 +1010,7 @@
       "time": "07:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-10-05",
       "description": ""
@@ -945,6 +1023,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Wanderung zum Erntedank-Teppich in Otterswang **AP: Aulendorf, BahnhofTP: Stadtbahnhof FN, 8:45 Uhr"
@@ -957,6 +1036,7 @@
       "time": "13:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Mountainbike",
+      "difficulty": "S0",
       "end_date": "2026-10-11",
       "registration_deadline": "2026-09-30",
       "description": ""
@@ -969,6 +1049,7 @@
       "time": "",
       "status": "",
       "category": "Sommertour/Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -981,6 +1062,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -993,6 +1075,7 @@
       "time": "07:00 Uhr",
       "status": "Es gibt noch ein paar Plätze",
       "category": "Klettern",
+      "difficulty": "KSE",
       "end_date": "2026-10-11",
       "registration_deadline": "2026-09-24",
       "description": ""
@@ -1005,6 +1088,7 @@
       "time": "",
       "status": "",
       "category": "Sommertour/Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1017,6 +1101,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Sonnenaufgangswanderung Kanisfluh (Mama-Tour)Wir starten mit Stirnlampen am Alpengasthof Edelweiß und genießen unser Rucksackfrühstück beim Sonnenaufgang auf dem Gipfel. 580 HmOrganisation. Ursula Belser"
@@ -1029,6 +1114,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2/T3",
       "end_date": "",
       "registration_deadline": "2026-10-11",
       "description": "Neunerköpfle - Sulzspitze (2084 m) ***AP: Tannheim (Tannheimer Tal)Abstieg: 800 HmTP: Juhe, 7:30 UhrAnmeldung bis 11.10., 18 Uhr"
@@ -1041,6 +1127,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1053,6 +1140,7 @@
       "time": "14:15 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-10-08",
       "description": ""
@@ -1065,6 +1153,7 @@
       "time": "17:50 Uhr",
       "status": "Genug freie Plätze",
       "category": "Trailrunning",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-10-22",
       "description": ""
@@ -1077,6 +1166,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-10-15",
       "description": "Sonneck - Hofner Berg (1106 m)  Organisation: Franz C. AP: WengenAnmeldung und VB: 15. Oktober"
@@ -1089,6 +1179,7 @@
       "time": "",
       "status": "",
       "category": "Klettern",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "Vereinsmeisterschaften im Sportklettern der Abteilung Klettersport im DAV-Kletterzentrum"
@@ -1101,6 +1192,7 @@
       "time": "08:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-10-14",
       "description": ""
@@ -1113,6 +1205,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "Lagerfeuerküche - Kochen &amp; Backen am offenen Feuer – ab 6 Jahre Gemeinsam schnippeln, rühren, kochen und backen wir am offenen Feuer und zaubern zusammen ein leckeres Drei-Gänge-Menü (oder mehr) als Abendessen.…"
@@ -1125,6 +1218,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Wasserwanderweg und Engenlochschlucht, Hittisau – ab 5 JahreVon Freibad Hittisau aus geht es auf einem abwechslungsreichen Weg am Wasser entlang und durch die Klamm. Ca. 4,5 km und 80 HmOrganisation: Ursula Belser"
@@ -1137,6 +1231,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1149,6 +1244,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Rundwanderung bei Wangen **AP: Wangen, InnenstadtTP: Stadtbahnhof FN, Bus 300, 8:30 Uhr,(div. Zustiegsmöglichkeiten)"
@@ -1161,6 +1257,7 @@
       "time": "08:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-10-14",
       "description": ""
@@ -1173,6 +1270,7 @@
       "time": "08:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Klettern",
+      "difficulty": "KSE",
       "end_date": "2026-10-29",
       "registration_deadline": "2026-10-07",
       "description": ""
@@ -1185,6 +1283,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-10-22",
       "description": "Wirtshauswanderung  Organisation: Jörg Z.Anmeldung und VB: 22. Oktober"
@@ -1197,6 +1296,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-10-25",
       "description": "Hohe Kugel (1645 m) ***AP: Fraxern, SportplatzTP: Juhe, 8:30 UhrAnmeldung bis 25.10., 18 Uhr"
@@ -1209,6 +1309,7 @@
       "time": "",
       "status": "",
       "category": "JDAV/Rennmannschaft",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1221,6 +1322,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Urbanstobel Horgenzell ***AP: Wanderparkplatz UrbanstobelTP: Juhe, 9:00 Uhr"
@@ -1233,6 +1335,7 @@
       "time": "17:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Gymnastik",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-12-02",
       "description": ""
@@ -1245,6 +1348,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Senioren",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-05",
       "description": ""
@@ -1257,6 +1361,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1269,6 +1374,7 @@
       "time": "13:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "keine",
       "end_date": "2026-11-08",
       "registration_deadline": "2026-10-25",
       "description": ""
@@ -1281,6 +1387,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Familien-HerbstwanderungZiel wird noch festgelegt und über den Newsletter bekanntgegebenOrganisation: Ursula Belser"
@@ -1293,6 +1400,7 @@
       "time": "18:30 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-09",
       "description": ""
@@ -1305,6 +1413,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "",
       "description": "Wanderung im Hinterland **(je nach Wetterlage)AP: wird kurzfristig festgelegtTP: Juhe, 9:00 Uhr"
@@ -1317,6 +1426,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "JugendvollversammlungUm 19:30 Uhr in der Kletterhalle."
@@ -1329,6 +1439,7 @@
       "time": "20:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-11",
       "description": ""
@@ -1341,6 +1452,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2026-11-12",
       "description": "Sonnenschein Wanderung für Entdecker Organisation: Franz C. AP: EichenbergAnmeldung und VB: 12. November"
@@ -1353,6 +1465,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
       "description": "Edelweißfest mit Jubilarehrung  15.11.2026Saal im Graf-Zeppelin-Haus, Beginn: 15:00 Uhr"
@@ -1365,6 +1478,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T 2",
       "end_date": "",
       "registration_deadline": "2026-11-15",
       "description": "Kleine Möggers-Runde **Hochberg - Schlüssellehen und zurückAP: MöggersTP: wird noch festgelegtAnmeldung per Mail bis 15.11."
@@ -1377,6 +1491,7 @@
       "time": "15:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Vortrag/Kooperation",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1389,6 +1504,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Vortrag/Kooperation",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1401,6 +1517,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T1, T2",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1413,6 +1530,7 @@
       "time": "",
       "status": "",
       "category": "Wandern",
+      "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2026-11-19",
       "description": "Matona (1998 m)Organisation: Stefan H.  Am Garnitzabach hoch und über den sonnigen SO-Grat zurückAP: Innerlaterns; Anmeldung und VB: 19. November"
@@ -1425,6 +1543,7 @@
       "time": "16:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Ausbildung",
+      "difficulty": "X",
       "end_date": "2026-11-29",
       "registration_deadline": "2026-11-19",
       "description": ""
@@ -1437,6 +1556,7 @@
       "time": "19:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Sektion",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2026-11-25",
       "description": ""
@@ -1449,6 +1569,7 @@
       "time": "16:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Ausbildung",
+      "difficulty": "X",
       "end_date": "2026-12-06",
       "registration_deadline": "2026-11-19",
       "description": ""
@@ -1461,6 +1582,7 @@
       "time": "14:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Familie",
+      "difficulty": "X",
       "end_date": "2026-12-06",
       "registration_deadline": "2026-11-25",
       "description": ""
@@ -1473,6 +1595,7 @@
       "time": "",
       "status": "",
       "category": "",
+      "difficulty": "",
       "end_date": "2026-12-06",
       "registration_deadline": "",
       "description": "Nikolauswochenende auf’m LankOrganisation: Ann-So, Gerrit &amp; Thies"
@@ -1485,6 +1608,7 @@
       "time": "16:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Ausbildung",
+      "difficulty": "X",
       "end_date": "2026-12-13",
       "registration_deadline": "2026-11-19",
       "description": ""
@@ -1497,6 +1621,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T0",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1509,6 +1634,7 @@
       "time": "15:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Vortrag/Kooperation",
+      "difficulty": "X",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1521,6 +1647,7 @@
       "time": "",
       "status": "",
       "category": "Familie",
+      "difficulty": "T0, T1",
       "end_date": "",
       "registration_deadline": "",
       "description": ""
@@ -1533,6 +1660,7 @@
       "time": "05:00 Uhr",
       "status": "Genug freie Plätze",
       "category": "Skitour",
+      "difficulty": "ST-WS-K2",
       "end_date": "2027-03-12",
       "registration_deadline": "2027-01-27",
       "description": ""

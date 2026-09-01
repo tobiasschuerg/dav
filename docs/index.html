@@ -334,24 +334,33 @@
   .segmented button[data-key="rv"] .dot { background: var(--rv); }
   .segmented button[data-key="ue"] .dot { background: var(--ue); }
 
-  .category-select {
-    font-family: inherit;
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: var(--ink);
-    background-color: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: 999px;
-    padding: 0.55rem 2rem 0.55rem 1rem;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23647680' stroke-width='2.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.8rem center;
+  .category-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.2rem 0 0.8rem;
   }
 
-  .category-select:hover { border-color: var(--border-strong); }
-  .category-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .chip {
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+  }
+
+  .chip:hover { border-color: var(--border-strong); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .chip[aria-pressed="true"] {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
 
   .search {
     flex: 1;
@@ -492,6 +501,7 @@
   }
 
   .tag-cat { color: var(--ink-muted); background: var(--surface-sunken); }
+  .tag-diff { color: var(--accent-strong); background: var(--accent-soft); }
   .tag-days { color: var(--accent-2-strong); background: var(--accent-2-soft); }
   .tag-good { color: var(--good); background: var(--good-soft); }
   .tag-warn { color: var(--warn); background: var(--warn-soft); }
@@ -556,14 +566,13 @@
       <button type="button" data-key="rv" aria-pressed="false"><span class="dot"></span>Ravensburg</button>
       <button type="button" data-key="ue" aria-pressed="false"><span class="dot"></span>Überlingen</button>
     </div>
-    <select id="categorySelect" class="category-select" aria-label="Tourart filtern">
-      <option value="">Alle Tourarten</option>
-    </select>
     <div class="search">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input id="searchInput" type="search" placeholder="Tour suchen …" aria-label="Touren durchsuchen">
     </div>
   </div>
+
+  <div class="category-chips" id="categoryChips" role="group" aria-label="Tourarten filtern"></div>
 
   <p class="count-line" id="countLine"></p>
 
@@ -643,24 +652,27 @@
     `;
   }
 
-  function buildCategoryOptions() {
+  function buildCategoryChips() {
     const counts = new Map();
     for (const t of TOURS) {
       for (const cat of categoriesOf(t)) {
         counts.set(cat, (counts.get(cat) || 0) + 1);
       }
     }
-    const select = document.getElementById("categorySelect");
-    for (const [cat, count] of [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0], "de"))) {
-      const opt = document.createElement("option");
-      opt.value = cat;
-      opt.textContent = `${cat} (${count})`;
-      select.appendChild(opt);
-    }
+    categoryCounts = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    renderCategoryChips();
+  }
+
+  function renderCategoryChips() {
+    const container = document.getElementById("categoryChips");
+    container.innerHTML = categoryCounts.map(([cat, count]) => `
+      <button type="button" class="chip" data-cat="${escapeHtml(cat)}" aria-pressed="${activeCategories.has(cat)}">${escapeHtml(cat)} · ${count}</button>
+    `).join("");
   }
 
   let activeSection = "all";
-  let activeCategory = "";
+  let activeCategories = new Set();
+  let categoryCounts = [];
   let query = "";
   let activeMonth = 0;
   let groupCount = 0;
@@ -668,7 +680,7 @@
   function render() {
     const filtered = TOURS.filter(t => {
       if (activeSection !== "all" && sectionKey(t.section) !== activeSection) return false;
-      if (activeCategory && !categoriesOf(t).includes(activeCategory)) return false;
+      if (activeCategories.size && !categoriesOf(t).some(c => activeCategories.has(c))) return false;
       if (query && !t.title.toLowerCase().includes(query)) return false;
       return true;
     });
@@ -735,6 +747,7 @@
               <div class="badge-row">
                 <span class="section-label" style="color: var(--${key})">${SECTION_INFO[key].label}</span>
                 ${t.category ? `<span class="tag tag-cat">${escapeHtml(t.category)}</span>` : ""}
+                ${t.difficulty ? `<span class="tag tag-diff">${escapeHtml(t.difficulty)}</span>` : ""}
                 ${days ? `<span class="tag tag-days">${days} Tage</span>` : ""}
                 ${soldOut ? `<span class="tag tag-soldout">Ausgebucht</span>` : ""}
                 ${statusTag}
@@ -793,8 +806,13 @@
     render();
   });
 
-  document.getElementById("categorySelect").addEventListener("change", e => {
-    activeCategory = e.target.value;
+  document.getElementById("categoryChips").addEventListener("click", e => {
+    const btn = e.target.closest(".chip");
+    if (!btn) return;
+    const cat = btn.dataset.cat;
+    if (activeCategories.has(cat)) activeCategories.delete(cat);
+    else activeCategories.add(cat);
+    renderCategoryChips();
     render();
   });
 
@@ -820,7 +838,7 @@
       TOURS = data.tours;
       loaded = true;
       buildHeader();
-      buildCategoryOptions();
+      buildCategoryChips();
       render();
     });
 </script>

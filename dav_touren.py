@@ -112,6 +112,7 @@ class Tour:
     time: str = ""
     status: str = ""
     category: str = ""
+    difficulty: str = ""
     end_date: str = ""
     registration_deadline: str = ""
     description: str = ""
@@ -202,6 +203,33 @@ def _parse_fn_registration_deadline(description: str, tour_date: str) -> str:
     return deadline.isoformat()
 
 
+_FN_VORAUSSETZUNGEN_RE = re.compile(
+    r"Voraussetzungen\s*</h2>\s*<div>\s*<p><a[^>]*>([^<]*)</a>", re.S
+)
+_FN_SAC_PREFIX_RE = re.compile(r"^SAC\s+\d+\s+\S+\s+(\S.*)$")
+
+
+def _shorten_fn_difficulty(text: str) -> str:
+    """Kürzt "SAC 23 Wanderung T4-" auf die reine Gradangabe "T4-".
+
+    Die Voraussetzungen-Seite präfixt die Gradangabe mit der SAC-Kursnummer und
+    der Tourart (z.B. "SAC 12 Klettern UIAA-V-"); nur der Grad selbst ist
+    hier von Interesse.
+    """
+    match = _FN_SAC_PREFIX_RE.match(text)
+    return match.group(1) if match else text
+
+
+def _parse_fn_difficulty(html: str) -> str:
+    """Liest die Schwierigkeitsangabe (z.B. "T2", "SAC 23 Wanderung T4-") aus dem
+    "Voraussetzungen"-Abschnitt der Detailseite; nicht jede Tour hat eine.
+    """
+    match = _FN_VORAUSSETZUNGEN_RE.search(html)
+    if not match:
+        return ""
+    return _shorten_fn_difficulty(unescape(match.group(1)).strip())
+
+
 def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "") -> Tour | None:
     url = FN_BASE_URL + path
     resp = session.get(url, timeout=REQUEST_TIMEOUT)
@@ -220,6 +248,7 @@ def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "
                 date=date,
                 url=url,
                 category=category,
+                difficulty=_parse_fn_difficulty(resp.text),
                 end_date=end_date,
                 registration_deadline=_parse_fn_registration_deadline(description, date),
                 description=description,
@@ -354,6 +383,7 @@ def _parse_rv_date(date_str: str) -> str:
 
 
 _RV_CATEGORY_RE = re.compile(r"Kategorie:</th>\s*<td[^>]*>(.*?)</td>", re.S)
+_RV_BEWERTUNG_RE = re.compile(r"Bewertung:</th>\s*<td[^>]*>(.*?)</td>", re.S)
 _RV_DATUM_RE = re.compile(r"Datum:</th>\s*<td[^>]*>(.*?)</td>", re.S)
 _RV_ANMELDUNG_ENDE_RE = re.compile(r"Datum Ende Anmeldung:</th>\s*<td[^>]*>(.*?)</td>", re.S)
 _RV_DATE_RE = re.compile(r"(\d{2})\.(\d{2})\.(\d{4})")
@@ -361,25 +391,32 @@ _RV_DATE_RE = re.compile(r"(\d{2})\.(\d{2})\.(\d{4})")
 
 class RavensburgDetails(NamedTuple):
     category: str
+    difficulty: str
     end_date: str
     registration_deadline: str
 
 
 def fetch_rv_tour_details(session: requests.Session, url: str) -> RavensburgDetails:
-    """Holt Tourart, Mehrtages-Enddatum und Anmeldeschluss von der Detailseite.
+    """Holt Tourart, Schwierigkeit, Mehrtages-Enddatum und Anmeldeschluss von der
+    Detailseite.
 
     Die Kalender-Listenansicht liefert nur Titel/Datum/Status; die genannten
     Felder stehen ausschließlich in der Steckbrief-Tabelle jeder Tour-Detailseite.
     """
     resp = session.get(url, timeout=REQUEST_TIMEOUT)
     if not resp.ok:
-        return RavensburgDetails("", "", "")
+        return RavensburgDetails("", "", "", "")
     text = resp.text
 
     category = ""
     match = _RV_CATEGORY_RE.search(text)
     if match:
         category = unescape(re.sub(r"<[^>]+>", "", match.group(1))).strip()
+
+    difficulty = ""
+    match = _RV_BEWERTUNG_RE.search(text)
+    if match:
+        difficulty = unescape(re.sub(r"<[^>]+>", "", match.group(1))).strip()
 
     end_date = ""
     match = _RV_DATUM_RE.search(text)
@@ -399,7 +436,7 @@ def fetch_rv_tour_details(session: requests.Session, url: str) -> RavensburgDeta
             day, month, year = date_match.groups()
             registration_deadline = f"{year}-{month}-{day}"
 
-    return RavensburgDetails(category, end_date, registration_deadline)
+    return RavensburgDetails(category, difficulty, end_date, registration_deadline)
 
 
 def _enrich_rv_details(session: requests.Session, tours: list[Tour], max_workers: int = 8) -> None:
@@ -409,6 +446,7 @@ def _enrich_rv_details(session: requests.Session, tours: list[Tour], max_workers
         except requests.RequestException:
             return
         tour.category = _normalize_category(details.category)
+        tour.difficulty = details.difficulty
         tour.end_date = details.end_date
         tour.registration_deadline = details.registration_deadline
 
@@ -533,6 +571,11 @@ def fetch_ue_tours(max_workers: int = 8) -> list[Tour]:
                         end_date_str = ""
             parts = [p.strip() for p in category_field.split("|")]
             category = parts[1] if len(parts) > 1 else ""
+            # Nach Tourart folgt optional die Schwierigkeit als "T"-Skala (z.B. "T3"
+            # oder "T1, T2"), gefolgt von der Konditionsskala ("K..."), die wir ignorieren.
+            difficulty = next(
+                (p for p in parts[2:] if re.match(r"^T\d", p)), ""
+            )
             tours.append(
                 Tour(
                     section="DAV Überlingen",
@@ -540,6 +583,7 @@ def fetch_ue_tours(max_workers: int = 8) -> list[Tour]:
                     date=date_str,
                     url=link.strip(),
                     category=category,
+                    difficulty=difficulty,
                     end_date=end_date_str,
                 )
             )
@@ -575,6 +619,7 @@ def _print_text(tours: Iterable[Tour]) -> None:
             current_section = tour.section
             print(f"\n== {current_section} ==")
         category_part = f" ({tour.category})" if tour.category else ""
+        difficulty_part = f" [{tour.difficulty}]" if tour.difficulty else ""
         days = _days_span(tour)
         days_part = f" [{days} Tage]" if days else ""
         deadline_part = (
@@ -585,7 +630,7 @@ def _print_text(tours: Iterable[Tour]) -> None:
         extra = f"  [{tour.status}]" if tour.status else ""
         time_part = f" {tour.time}" if tour.time else ""
         print(
-            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{days_part}  "
+            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{difficulty_part}{days_part}  "
             f"{tour.url}{extra}{deadline_part}"
         )
 
@@ -598,6 +643,7 @@ def _write_csv(tours: Iterable[Tour], path: str) -> None:
         "time",
         "title",
         "category",
+        "difficulty",
         "status",
         "registration_deadline",
         "url",
