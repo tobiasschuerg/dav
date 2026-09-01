@@ -29,6 +29,8 @@ import datetime
 import json
 import re
 import sys
+import threading
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from html import unescape
 from html.parser import HTMLParser
@@ -38,6 +40,7 @@ import requests
 
 USER_AGENT = "Mozilla/5.0 (compatible; dav-touren-tool/1.0)"
 REQUEST_TIMEOUT = 20
+MIN_REQUEST_INTERVAL = 0.2
 
 FN_BASE_URL = "https://www.dav-fn.de"
 FN_LIST_PATH = "/programm_neu_so26/gesamt"
@@ -48,6 +51,19 @@ FN_CATEGORIES = {
     "klettern": "Klettern",
     "skibergsteigen": "Skibergsteigen",
     "mountainbiken": "Mountainbike",
+}
+
+FN_GROUP_BASE_PATH = "/programm_neu_so26/gemeinsam"
+FN_GROUPS = {
+    "familien-events": "Familiengruppe",
+    "alpinplus-events": "Alpin +",
+    "jugendleistungsgruppe-klettern-events": "Jugendleistungsgruppe",
+    "klettern-hochtouren-events": "Kletter- u. Hochtourengruppe",
+    "kraxxler-events": "Kraxxler",
+    "rucksack-events": "Der Rucksack",
+    "senioren-events": "Seniorengruppe",
+    "walk-und-talk-events": "Walk und Talk",
+    "mountainbike-events": "Mountainbikegruppe",
 }
 
 RV_BASE_URL = "https://www.dav-ravensburg.info"
@@ -77,6 +93,10 @@ _CATEGORY_ALIASES = {
     "familiengruppe": "Familie",
     "wanderung": "Wandern",
     "bergwanderung": "Wandern",
+    "seniorengruppe": "Senioren",
+    "jdav": "Rennmannschaft",
+    "kooperation": "Vortrag",
+    "gletschertour": "Hochtour",
 }
 
 
@@ -112,6 +132,7 @@ class Tour:
     time: str = ""
     status: str = ""
     category: str = ""
+    group: str = ""
     difficulty: str = ""
     end_date: str = ""
     registration_deadline: str = ""
@@ -119,14 +140,37 @@ class Tour:
 
     def __post_init__(self) -> None:
         self.category = _normalize_category(self.category)
+        self.group = _normalize_category(self.group)
 
     def sort_key(self) -> tuple[str, str]:
         # Fehlende/unparsbare Daten landen am Ende statt den Sortierlauf zu crashen.
         return (self.date or "9999-99-99", self.title)
 
 
+class _ThrottledSession(requests.Session):
+    """Session, die aufeinanderfolgende Anfragen mit einem Mindestabstand entzerrt,
+
+    auch wenn mehrere Threads gleichzeitig über einen ThreadPoolExecutor anfragen.
+    So bleibt die Anfragerate auch bei hoher Parallelität serverfreundlich.
+    """
+
+    def __init__(self, min_interval: float = MIN_REQUEST_INTERVAL) -> None:
+        super().__init__()
+        self._min_interval = min_interval
+        self._lock = threading.Lock()
+        self._last_request = 0.0
+
+    def request(self, *args: Any, **kwargs: Any) -> requests.Response:
+        with self._lock:
+            wait = self._last_request + self._min_interval - time.monotonic()
+            if wait > 0:
+                time.sleep(wait)
+            self._last_request = time.monotonic()
+        return super().request(*args, **kwargs)
+
+
 def _session() -> requests.Session:
-    s = requests.Session()
+    s = _ThrottledSession()
     s.headers.update({"User-Agent": USER_AGENT})
     return s
 
@@ -206,6 +250,18 @@ def _parse_fn_registration_deadline(description: str, tour_date: str) -> str:
 _FN_VORAUSSETZUNGEN_RE = re.compile(
     r"Voraussetzungen\s*</h2>\s*<div>\s*<p><a[^>]*>([^<]*)</a>", re.S
 )
+_FN_SAC_PREFIX_RE = re.compile(r"^SAC\s+\d+\s+\S+\s+(\S.*)$")
+
+
+def _shorten_fn_difficulty(text: str) -> str:
+    """Kürzt "SAC 23 Wanderung T4-" auf die reine Gradangabe "T4-".
+
+    Die Voraussetzungen-Seite präfixt die Gradangabe mit der SAC-Kursnummer und
+    der Tourart (z.B. "SAC 12 Klettern UIAA-V-"); nur der Grad selbst ist
+    hier von Interesse.
+    """
+    match = _FN_SAC_PREFIX_RE.match(text)
+    return match.group(1) if match else text
 
 
 def _parse_fn_difficulty(html: str) -> str:
@@ -213,10 +269,14 @@ def _parse_fn_difficulty(html: str) -> str:
     "Voraussetzungen"-Abschnitt der Detailseite; nicht jede Tour hat eine.
     """
     match = _FN_VORAUSSETZUNGEN_RE.search(html)
-    return unescape(match.group(1)).strip() if match else ""
+    if not match:
+        return ""
+    return _shorten_fn_difficulty(unescape(match.group(1)).strip())
 
 
-def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "") -> Tour | None:
+def fetch_fn_tour_detail(
+    session: requests.Session, path: str, category: str = "", group: str = ""
+) -> Tour | None:
     url = FN_BASE_URL + path
     resp = session.get(url, timeout=REQUEST_TIMEOUT)
     if not resp.ok:
@@ -234,6 +294,7 @@ def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "
                 date=date,
                 url=url,
                 category=category,
+                group=group,
                 difficulty=_parse_fn_difficulty(resp.text),
                 end_date=end_date,
                 registration_deadline=_parse_fn_registration_deadline(description, date),
@@ -242,10 +303,8 @@ def fetch_fn_tour_detail(session: requests.Session, path: str, category: str = "
     return None
 
 
-def _fetch_fn_category_urls(session: requests.Session, category_key: str) -> list[str]:
-    resp = session.get(
-        f"{FN_BASE_URL}{FN_CATEGORY_BASE_PATH}/{category_key}", timeout=REQUEST_TIMEOUT
-    )
+def _fetch_fn_itemlist_urls(session: requests.Session, path: str) -> list[str]:
+    resp = session.get(f"{FN_BASE_URL}{path}", timeout=REQUEST_TIMEOUT)
     resp.raise_for_status()
     urls: list[str] = []
     for block in _extract_ld_json_blocks(resp.text):
@@ -258,17 +317,28 @@ def _fetch_fn_category_urls(session: requests.Session, category_key: str) -> lis
     return urls
 
 
-def fetch_fn_category_map(session: requests.Session) -> dict[str, str]:
-    """Bildet Tour-URL -> Tourart ab, indem die Bergsportart-Unterseiten abgefragt werden.
+def _fetch_fn_label_map(
+    session: requests.Session,
+    base_path: str,
+    slugs: dict[str, str],
+    max_labels: int | None = None,
+) -> dict[str, str]:
+    """Bildet Tour-URL -> zusammengeführte Labels ab, indem jede Unterseite (eine
 
-    Die Übersichtsseite selbst kennt keine Tourart je Eintrag; jede
-    Bergsportart-Seite listet aber nur ihre eigenen Touren als JSON-LD.
+    pro Tourart bzw. Gruppe) abgefragt wird. Die Übersichtsseite selbst kennt
+    diese Zuordnung nicht; jede Unterseite listet aber nur ihre eigenen Touren
+    als JSON-LD ItemList.
+
+    max_labels verwirft Einträge mit mehr als dieser Anzahl an Treffern: die
+    "gemeinsam"-Gruppenseiten listen z.B. sektionsweite Ankündigungen wie den
+    Redaktionsschluss in jeder einzelnen Gruppe, was sonst als (falsche)
+    Zugehörigkeit zu allen Gruppen erscheinen würde.
     """
     labels_by_url: dict[str, list[str]] = {}
-    with ThreadPoolExecutor(max_workers=len(FN_CATEGORIES)) as pool:
+    with ThreadPoolExecutor(max_workers=len(slugs)) as pool:
         futures = {
-            pool.submit(_fetch_fn_category_urls, session, key): label
-            for key, label in FN_CATEGORIES.items()
+            pool.submit(_fetch_fn_itemlist_urls, session, f"{base_path}/{slug}"): label
+            for slug, label in slugs.items()
         }
         for future in as_completed(futures):
             label = futures[future]
@@ -278,17 +348,36 @@ def fetch_fn_category_map(session: requests.Session) -> dict[str, str]:
                 continue
             for url in urls:
                 labels_by_url.setdefault(url, []).append(label)
-    return {url: "/".join(labels) for url, labels in labels_by_url.items()}
+    return {
+        url: "/".join(labels)
+        for url, labels in labels_by_url.items()
+        if max_labels is None or len(labels) <= max_labels
+    }
+
+
+def fetch_fn_category_map(session: requests.Session) -> dict[str, str]:
+    return _fetch_fn_label_map(session, FN_CATEGORY_BASE_PATH, FN_CATEGORIES)
+
+
+def fetch_fn_group_map(session: requests.Session) -> dict[str, str]:
+    return _fetch_fn_label_map(session, FN_GROUP_BASE_PATH, FN_GROUPS, max_labels=3)
 
 
 def fetch_fn_tours(max_workers: int = 8) -> list[Tour]:
     session = _session()
     paths = fetch_fn_tour_urls(session)
     category_map = fetch_fn_category_map(session)
+    group_map = fetch_fn_group_map(session)
     tours: list[Tour] = []
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
-            pool.submit(fetch_fn_tour_detail, session, path, category_map.get(path, "")): path
+            pool.submit(
+                fetch_fn_tour_detail,
+                session,
+                path,
+                category_map.get(path, ""),
+                group_map.get(path, ""),
+            ): path
             for path in paths
         }
         for future in as_completed(futures):
@@ -605,6 +694,7 @@ def _print_text(tours: Iterable[Tour]) -> None:
             current_section = tour.section
             print(f"\n== {current_section} ==")
         category_part = f" ({tour.category})" if tour.category else ""
+        group_part = f" <{tour.group}>" if tour.group else ""
         difficulty_part = f" [{tour.difficulty}]" if tour.difficulty else ""
         days = _days_span(tour)
         days_part = f" [{days} Tage]" if days else ""
@@ -616,7 +706,7 @@ def _print_text(tours: Iterable[Tour]) -> None:
         extra = f"  [{tour.status}]" if tour.status else ""
         time_part = f" {tour.time}" if tour.time else ""
         print(
-            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{difficulty_part}{days_part}  "
+            f"{tour.date or '?':<10}{time_part:<7} {tour.title:<{width}}{category_part}{group_part}{difficulty_part}{days_part}  "
             f"{tour.url}{extra}{deadline_part}"
         )
 
@@ -629,6 +719,7 @@ def _write_csv(tours: Iterable[Tour], path: str) -> None:
         "time",
         "title",
         "category",
+        "group",
         "difficulty",
         "status",
         "registration_deadline",
