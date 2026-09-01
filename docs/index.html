@@ -244,41 +244,6 @@
     text-wrap: pretty;
   }
 
-  .stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.4rem;
-  }
-
-  .stat {
-    display: flex;
-    align-items: baseline;
-    gap: 0.45rem;
-    background: var(--surface-sunken);
-    border-radius: 999px;
-    padding: 0.5rem 1rem;
-  }
-
-  .stat b {
-    font-variant-numeric: tabular-nums;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .stat span {
-    color: var(--ink-muted);
-    font-size: 0.85rem;
-  }
-
-  .stat.fn { background: var(--fn-soft); }
-  .stat.fn b { color: var(--fn); }
-  .stat.rv { background: var(--rv-soft); }
-  .stat.rv b { color: var(--rv); }
-  .stat.ue { background: var(--ue-soft); }
-  .stat.ue b { color: var(--ue); }
-
   /* — controls — */
   .controls {
     position: sticky;
@@ -556,8 +521,7 @@
 
   <header class="top">
     <h1>DAV Touren Finder</h1>
-    <p class="sub">Alle Touren, Kurse und Veranstaltungen von DAV Friedrichshafen, DAV Ravensburg und DAV Überlingen an einem Ort, direkt von den Sektionswebsites abgerufen.</p>
-    <div class="stats" id="stats"></div>
+    <p class="sub">Touren, Kurse und Veranstaltungen der DAV-Sektionen Friedrichshafen, Ravensburg und Überlingen.</p>
   </header>
 
   <div class="controls">
@@ -638,21 +602,6 @@
     return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
-  function buildHeader() {
-    const total = TOURS.length;
-    const sectionStats = Object.entries(SECTION_INFO)
-      .map(([key, info]) => {
-        const count = TOURS.filter(t => sectionKey(t.section) === key).length;
-        return `<div class="stat ${key}"><b>${count}</b><span>${info.label}</span></div>`;
-      })
-      .join("");
-
-    document.getElementById("stats").innerHTML = `
-      <div class="stat"><b>${total}</b><span>Touren gesamt</span></div>
-      ${sectionStats}
-    `;
-  }
-
   function buildCategoryChips() {
     const counts = new Map();
     for (const t of TOURS) {
@@ -660,7 +609,7 @@
         counts.set(cat, (counts.get(cat) || 0) + 1);
       }
     }
-    categoryCounts = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    categoryCounts = [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0], "de"));
     renderCategoryChips();
   }
 
@@ -839,7 +788,6 @@
     .then(data => {
       TOURS = data.tours;
       loaded = true;
-      buildHeader();
       buildCategoryChips();
       render();
     });
