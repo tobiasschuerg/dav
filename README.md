@@ -4,7 +4,7 @@ Listet alle aktuellen Touren der Sektionen **DAV Friedrichshafen**,
 **DAV Ravensburg**, **DAV Überlingen** und **DAV Lindau** auf, direkt von den
 jeweiligen Sektionswebsites.
 
-Live als **DAV Touren-Finder Bodensee**: `https://<user>.github.io/<repo>/`
+Live als **DAV Touren-Finder Bodensee**: https://tobiasschuerg.github.io/dav/
 (siehe [Gehostete Website](#gehostete-website)).
 
 Technische Details zu den einzelnen Datenquellen, der Tourart/Gruppe/
@@ -38,6 +38,6 @@ Optionen:
 ## Gehostete Website
 
 `generate_site.py` baut aus den aktuellen Touren und `site/template.html`
-die live unter `https://<user>.github.io/<repo>/` laufende Seite in `docs/`.
+die live unter https://tobiasschuerg.github.io/dav/ laufende Seite in `docs/`.
 Ein wöchentlicher GitHub-Actions-Lauf hält sie aktuell. Details zu Aufbau und
 Deploy-Mechanik stehen in [AGENTS.md](AGENTS.md).
