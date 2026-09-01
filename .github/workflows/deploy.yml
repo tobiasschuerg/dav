@@ -1,0 +1,50 @@
+name: Deploy Tourenprogramm
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # jeden Montag, 05:00 UTC
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - "dav_touren.py"
+      - "generate_site.py"
+      - "site/template.html"
+      - ".github/workflows/deploy.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-tourenprogramm
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate site
+        run: python3 generate_site.py --output-dir docs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html docs/tours.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen am Tourenprogramm."
+          else
+            git commit -m "Tourenprogramm aktualisiert ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi
