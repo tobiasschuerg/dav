@@ -38,6 +38,7 @@ def fetch_all_tours() -> list[dav_touren.Tour]:
         ("Friedrichshafen", dav_touren.fetch_fn_tours),
         ("Ravensburg", dav_touren.fetch_rv_tours),
         ("Überlingen", dav_touren.fetch_ue_tours),
+        ("Lindau", dav_touren.fetch_li_tours),
     ):
         section_tours = fetch()
         if len(section_tours) < MIN_TOURS_PER_SECTION:

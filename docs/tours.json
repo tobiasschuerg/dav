@@ -1,5 +1,5 @@
 {
-  "generated_at": "01.09.2026 19:42",
+  "generated_at": "01.09.2026 22:05",
   "tours": [
     {
       "section": "DAV Friedrichshafen",
@@ -42,6 +42,20 @@
       "end_date": "",
       "registration_deadline": "",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Senioren - Gegenüber von Garfrescha - die andere Seite",
+      "date": "2026-09-02",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e40204fc43eb2d94a01c68",
+      "time": "08:00 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Wandern",
+      "group": "Senioren",
+      "difficulty": "Leicht",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Maiensäßwanderung: Manigg - Untere Netze - Montiel AP: Gortipohl, EP St. Gallenkirch\n\nTourenländer: Österreich\nArt der Tour: Führungstour\nKategorie: Wandern\nAngebot für: Senioren\nTourenführer: Klaus…"
     },
     {
       "section": "DAV Ravensburg",
@@ -170,6 +184,20 @@
       "description": ""
     },
     {
+      "section": "DAV Lindau",
+      "title": "Wandern - Herbstwanderung auf die Heimspitze 2685m",
+      "date": "2026-09-05",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e61a230787207ba8d4cdf9",
+      "time": "07:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Wandern",
+      "group": "",
+      "difficulty": "Schwer",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Eine anstrengende, aber reizvolle Wanderung von Gargellen aus durch das Vergaldener Tal auf die Heimspitze. Sehr gute Kondition für 1400hm, 20km gehen sowie Trittsicherheit und Schwindelfreiheit sind…"
+    },
+    {
       "section": "DAV Friedrichshafen",
       "title": "Boaleskopf 1576m",
       "date": "2026-09-06",
@@ -224,6 +252,20 @@
       "end_date": "",
       "registration_deadline": "",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Jugend 1 - Zeltlager (10 - 14 Jahre)",
+      "date": "2026-09-08",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/69406b7452014c182a1f82f3",
+      "time": "08:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "",
+      "group": "Jugend",
+      "difficulty": "",
+      "end_date": "2026-09-12",
+      "registration_deadline": "",
+      "description": "Beschreibung: Jährliches Jugend1-Zeltlager in den Bergen mit\nSpiel, Spaß, Freude, Gruppen- und Naturerlebnis.\nFünf Tage Abenteuer, Natur und Erlebnis im Nenzinger Himmel. Wir campen auf einem wunderschönen Almboden und…"
     },
     {
       "section": "DAV Ravensburg",
@@ -520,6 +562,20 @@
       "description": ""
     },
     {
+      "section": "DAV Lindau",
+      "title": "Senioren - Wanderung Bezau - Höhlenpark - Sonderdach",
+      "date": "2026-09-16",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e3ee6efc43eb2d949f5acc",
+      "time": "07:00 Uhr",
+      "status": "Es gibt noch ein paar Plätze",
+      "category": "Wandern",
+      "group": "Senioren",
+      "difficulty": "Leicht",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Durch das uralte Felssturzgebiet Höhlenpark zum Sonderdach\n\nTourenländer: Österreich\nArt der Tour: Führungstour\nKategorie: Wandern\nAngebot für: Senioren\nTourenführer: Joe Eggert\nWeitere Führer: Christiane…"
+    },
+    {
       "section": "DAV Ravensburg",
       "title": "Planungstreffen Winterprogramm der Schneeschuhtouren-Gruppe - 2026/2027",
       "date": "2026-09-17",
@@ -644,6 +700,34 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "19. Sept. Tagestour Heiligenberg Organisation – Gerhard Maurer, Tobias Schmidt   Mit Integration Bikepark Überlingen. Von dort ist der Rückweg mit dem Zug möglich.  Bitte Vesper einpacken AP: Leimbach, Feuerwehrhaus1500…"
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Wandern - Gartnerwand Kammüberschreitung",
+      "date": "2026-09-19",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e0028118838198a0d1669d",
+      "time": "07:00 Uhr",
+      "status": "Es gibt noch ein paar Plätze",
+      "category": "Wandern",
+      "group": "",
+      "difficulty": "Mittel",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Von Lermoos führt uns die Tour über den Nordgrat auf die Gartnerwand. Der Grat hat schöne Tief- und Fernblicke und ist daher teilweise Stahlseilversichert. Es sind Kletterstellen bis II- zu bewältigen,…"
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "MTB - Bike & Hike - Alp Valpun & Chruz",
+      "date": "2026-09-20",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e2738218838198a0d69adb",
+      "time": "07:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Mountainbike/Wandern",
+      "group": "",
+      "difficulty": "Mittel",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Eine abwechslungsreiche Bike & Hike Runde im Prättigau erwartet Euch. Wir starten den Uphill in Schiers auf nicht zu steilen Wegen zur Alp Valpun. Dort beginnt die Wanderung auf die Gipfel Chruz (2196 m)…"
     },
     {
       "section": "DAV Friedrichshafen",
@@ -800,6 +884,20 @@
       "description": ""
     },
     {
+      "section": "DAV Lindau",
+      "title": "Frauenwandern - Bergwochenende  im Alpsteingebiet (Schweiz)",
+      "date": "2026-09-26",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68dff41f18838198a0d14235",
+      "time": "07:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Wandern",
+      "group": "Frauen",
+      "difficulty": "Leicht",
+      "end_date": "2026-09-27",
+      "registration_deadline": "",
+      "description": "Beschreibung: Wir wandern auf schönen Wegen im Alpsteingebiet...erkunden die Gegend um den Altmann und schlafen eine Nacht auf der Zwinglipasshütte.\n\nTourenländer: Schweiz\nArt der Tour: Führungstour\nKategorie:…"
+    },
+    {
       "section": "DAV Ravensburg",
       "title": "Hoher Ifen - 2026",
       "date": "2026-09-26",
@@ -938,6 +1036,20 @@
       "end_date": "",
       "registration_deadline": "",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Senioren - Wanderung zum Aescher",
+      "date": "2026-09-30",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e3e8348228c61bcb035aae",
+      "time": "07:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Wandern",
+      "group": "Senioren",
+      "difficulty": "Mittel",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Anreise mit PKWs nach Wasseraue. Alpiner Aufstieg (750 Hm) zum Aescher. Abstieg in Varianten. Eine gute Kondition und Trittsicherheit sind erforderlich für die anspruchsvolle Tour mit 5 - 6 Stunden Gehzeit…"
     },
     {
       "section": "DAV Ravensburg",
@@ -1108,6 +1220,20 @@
       "description": "Wanderung zum Erntedank-Teppich in Otterswang **AP: Aulendorf, BahnhofTP: Stadtbahnhof FN, 8:45 Uhr"
     },
     {
+      "section": "DAV Lindau",
+      "title": "Hüttenabschluss  2026: 3 Tage Berge & Hütte für die Jugend 1, Jugend 2, JuMa (12 - 27 Jahre)",
+      "date": "2026-10-09",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/6924bba0d37a56b7454f2c25",
+      "time": "14:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Bergsteigen",
+      "group": "Jugend",
+      "difficulty": "",
+      "end_date": "2026-10-11",
+      "registration_deadline": "",
+      "description": "Beschreibung:\nSaisonabschluss auf der Lindauer Hütte → drei Tage Hüttenabschluss-Programm für die ältere Jugend der Ju1 (12 - 14 Jahre), Ju2 (14-18 Jahre) und JuMa (18-27 Jahre):\nFreitagnachmittag, 09. Oktober:…"
+    },
+    {
       "section": "DAV Ravensburg",
       "title": "MTB - Kids & Zwerge Camp - 2026",
       "date": "2026-10-09",
@@ -1148,6 +1274,48 @@
       "end_date": "",
       "registration_deadline": "",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Hüttenabschluss 2026 - SAFE THE DATE",
+      "date": "2026-10-10",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e422488228c61bcb07dca8",
+      "time": "07:00 Uhr",
+      "status": "",
+      "category": "Sektion/Bergsteigen/Wandern/Klettern/Familie/Mountainbike",
+      "group": "Senioren/Jugend",
+      "difficulty": "",
+      "end_date": "2026-10-11",
+      "registration_deadline": "",
+      "description": "Beschreibung: Am Samstag feiern wir gemeinsam unseren Hüttenabschluss mit allen Ressorts.\nAuch in diesem Jahr übernachten Kinder kostenlos. Es wird lediglich eine geringe Pauschale \nvon 5  Euro pro Kind zur Deckung der…"
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Hüttenabschluss 2026: 2 Tage Berge & Hütte für die Jugend 1 (10 - 14 Jahre)",
+      "date": "2026-10-10",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/6924c16bdea4d358915b479f",
+      "time": "08:00 Uhr",
+      "status": "Tour ausgebucht",
+      "category": "Bergsteigen",
+      "group": "Jugend",
+      "difficulty": "",
+      "end_date": "2026-10-11",
+      "registration_deadline": "",
+      "description": "Beschreibung:\nZwei Tage Hüttenabschluss-Programm für die Jugend 1 (10 - 14 Jahre):\nSamstag, 10. Oktober: Erlebnisreicher Aufstieg zur Lindauer Hütte \nSamstagabend: buntes Programm mit Nachtwanderung, Tischklettern,…"
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Hüttenabschluss 2026: 2 Tage Berge & Hütte für die Kindergruppe (7-10 Jahre)",
+      "date": "2026-10-10",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/692381a01f4a128667e63cdb",
+      "time": "08:00 Uhr",
+      "status": "Es gibt noch ein paar Plätze",
+      "category": "",
+      "group": "Jugend",
+      "difficulty": "",
+      "end_date": "2026-10-11",
+      "registration_deadline": "",
+      "description": "Beschreibung: \nSaisonabschluss auf der Lindauer Hütte → zwei Tage Hüttenabschluss-Programm für die Kindergruppe (7-10 Jahre):\nSamstag, 10. Oktober: Erlebnisreicher Aufstieg zur Lindauer Hütte \nSamstagabend: buntes…"
     },
     {
       "section": "DAV Ravensburg",
@@ -1218,6 +1386,20 @@
       "end_date": "",
       "registration_deadline": "",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Senioren -   Käsepätzle Essen in Schönenbach",
+      "date": "2026-10-14",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/68e402ac8228c61bcb05642c",
+      "time": "07:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Wandern",
+      "group": "Senioren",
+      "difficulty": "Leicht",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: Abschlußwanderung der Senioren nach Schönenbach AP Siebratsfäll - Schönenbach , 8,7 km Schönenbach - EP Bizau - Dorfmitte , Bushaltestelle, 9,2 km\n\nTourenländer: Österreich\nArt der Tour:…"
     },
     {
       "section": "DAV Ravensburg",
@@ -1554,6 +1736,20 @@
       "end_date": "",
       "registration_deadline": "2026-11-11",
       "description": ""
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Bergtour Alpin-Jugend 1 (10 bis 14 Jahre) mit Dorothee",
+      "date": "2026-11-14",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/692245621f4a128667e0e857",
+      "time": "08:00 Uhr",
+      "status": "Es gibt noch ein paar Plätze",
+      "category": "",
+      "group": "Jugend",
+      "difficulty": "",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": "Beschreibung: \nBergtour für die Alpingruppe Jugend 1 und für interessierte Kinder von 10 bis 14 Jahre\n \nTourenländer: Deutschland, Liechtenstein, Österreich oder Schweiz\nArt der Tour: Führungstour\nKategorie:…"
     },
     {
       "section": "DAV Friedrichshafen",

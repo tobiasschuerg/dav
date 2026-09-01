@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Listet alle aktuellen Touren der DAV-Sektionen Friedrichshafen, Ravensburg und
-Überlingen auf.
+"""Listet alle aktuellen Touren der DAV-Sektionen Friedrichshafen, Ravensburg,
+Überlingen und Lindau auf.
 
 Friedrichshafen (dav-fn.de) rendert seine Tourenübersicht als Vue-SPA, bettet aber
 auf der Übersichtsseite ein schema.org-JSON-LD ItemList mit allen Tour-Detail-URLs
@@ -14,6 +14,10 @@ Kalender-Listenansicht über den AJAX-Endpunkt /we_tour.ajax abgerufen werden ka
 die /touren-Archivseite rendert Datum, Titel und Tourart serverseitig in eine paginierte
 Kartenliste, die hier abgegrast wird (die REST-API liefert zwar den Post-Type, aber
 kein strukturiertes Tourdatum).
+
+Lindau (alpenverein-lindau.de) bettet sein Tourenprogramm als Angular-Widget des
+Drittanbieters Yolawo ein; die Touren selbst kommen dabei nicht aus dem HTML,
+sondern aus einem einzelnen JSON-Endpunkt des Widgets (api.yolawo.de).
 
 Die Friedrichshafener Übersichtsseite listet die komplette Saison (inkl. bereits
 vergangener Termine); per Default filtert dieses Tool auf Termine ab heute
@@ -35,6 +39,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from html import unescape
 from html.parser import HTMLParser
 from typing import Any, Iterable, NamedTuple, TypedDict
+from zoneinfo import ZoneInfo
 
 import requests
 
@@ -99,16 +104,25 @@ _CATEGORY_ALIASES = {
     "jdav": "Fitness",
     "rennmannschaft": "Fitness",
     "gymnastik": "Fitness",
+    # Lindau taggt "geführte Wanderungen" (v.a. der Seniorengruppe) teils nur mit
+    # "Führungstour" statt zusätzlich mit der eigentlichen Tourart - ohne dieses
+    # Mapping blieben solche Touren ganz ohne Tourart-Tag.
+    "führungstour": "Wandern",
+    # "Hüttenabschluss" (Berge & Hütte übers Wochenende) und "Gemeinschaftstour"
+    # (sektionsweite Gemeinschaftsveranstaltung) sind eher Anlass als Tourart.
+    "hüttenabschluss": "Bergsteigen",
+    "gemeinschaftstour": "Sektion",
 }
 
 # Kategorien, die als eigenständiger Tourart-Tag keinen Mehrwert bieten (z.B. eine
-# reine Saisonangabe statt einer Tourart) und daher ganz entfernt statt umbenannt werden.
-_CATEGORY_DROP = {"sommertour"}
+# reine Saisonangabe statt einer Tourart, oder interne Yolawo-Verwaltungstags bei
+# Lindau) und daher ganz entfernt statt umbenannt werden.
+_CATEGORY_DROP = {"sommertour", "abgerechnet", "umfrage", "klimafreundliche anreise"}
 
 # Kategorien, die eigentlich eine Zielgruppe statt eine Tourart beschreiben (z.B.
 # Ravensburgs "Senioren"-Kategorie) und daher sektionsübergreifend ins group-Feld
 # verschoben werden, statt als Tourart-Filter zu erscheinen.
-_GROUP_LIKE_CATEGORIES = {"senioren"}
+_GROUP_LIKE_CATEGORIES = {"senioren", "jugend", "frauen"}
 
 
 def _normalize_category(category: str) -> str:
@@ -699,6 +713,108 @@ def fetch_ue_tours(max_workers: int = 8) -> list[Tour]:
 
 
 # --------------------------------------------------------------------------- #
+# DAV Lindau
+# --------------------------------------------------------------------------- #
+
+# Lindau bettet sein Tourenprogramm als Angular-Widget des Drittanbieters Yolawo
+# ein (kein serverseitig gerendertes HTML); die Widget-ID unten liefert die
+# sektionsweite "Termine Übersicht"-Seite, die alle Ressorts zusammenfasst. Das
+# Widget lädt seine Daten per XHR von api.yolawo.de/widgets/<id>/offers als ein
+# einzelnes JSON-Array mit allen Touren.
+LI_WIDGET_ID = "62ee6fbe4c60f56af607bb46"
+LI_API_URL = f"https://api.yolawo.de/widgets/{LI_WIDGET_ID}/offers"
+LI_TZ = ZoneInfo("Europe/Berlin")
+
+_LI_NIVEAU_RE = re.compile(r"^Niveau\s+(.+)$")
+
+
+def _li_parse_description(description: dict[str, Any]) -> str:
+    """Wandelt die Quill-Delta-"ops" der Yolawo-Beschreibung in Klartext um."""
+    ops = description.get("ops") or []
+    text = "".join(op.get("insert", "") for op in ops if isinstance(op.get("insert"), str))
+    return text.strip()
+
+
+def _li_status(next_bookable: dict[str, Any] | None) -> str:
+    """Grobe Statuseinschätzung aus der Restplatzzahl.
+
+    Die tatsächlich angezeigten Zustände (Anmeldung beendet/Warteliste/...) hängen
+    von einer nicht über die API offengelegten Anmeldefrist-Regel ab; die
+    Restplätze sind der einzige zuverlässig verfügbare Anhaltspunkt.
+    """
+    if not next_bookable:
+        return ""
+    capacity = next_bookable.get("capacity") or {}
+    free = capacity.get("freePlaces")
+    # maxLimit von 0 sind reine Ankündigungen ohne Buchungskontingent (z.B.
+    # "Save the date"-Platzhalter), keine tatsächlich ausgebuchten Touren.
+    if free is None or not capacity.get("maxLimit"):
+        return ""
+    if free <= 0:
+        return "Tour ausgebucht"
+    if free <= 3:
+        return "Es gibt noch ein paar Plätze"
+    return "Genug freie Plätze"
+
+
+def _li_local_date(iso_ts: str) -> datetime.datetime:
+    return datetime.datetime.fromisoformat(iso_ts.replace("Z", "+00:00")).astimezone(LI_TZ)
+
+
+def fetch_li_tours() -> list[Tour]:
+    session = _session()
+    resp = session.get(LI_API_URL, timeout=REQUEST_TIMEOUT)
+    resp.raise_for_status()
+    offers = resp.json()
+
+    tours: list[Tour] = []
+    for offer in offers:
+        if offer.get("canceled"):
+            continue
+        date_range = (offer.get("dates") or {}).get("range") or {}
+        start = date_range.get("from")
+        if not start:
+            continue
+        start_local = _li_local_date(start)
+        date = start_local.date().isoformat()
+
+        end_date = ""
+        end = date_range.get("to")
+        if end:
+            end_date_str = _li_local_date(end).date().isoformat()
+            if end_date_str != date:
+                end_date = end_date_str
+
+        category_parts: list[str] = []
+        difficulty = ""
+        for cat in offer.get("categories") or []:
+            name = (cat.get("name") or "").strip()
+            if not name:
+                continue
+            niveau_match = _LI_NIVEAU_RE.match(name)
+            if niveau_match:
+                difficulty = niveau_match.group(1)
+            else:
+                category_parts.append(name)
+
+        tours.append(
+            Tour(
+                section="DAV Lindau",
+                title=(offer.get("title") or "").strip(),
+                date=date,
+                url=f"https://widgets.yolawo.de/w/{LI_WIDGET_ID}/offers/{offer['id']}",
+                time=start_local.strftime("%H:%M Uhr"),
+                status=_li_status(offer.get("nextBookable")),
+                category="/".join(category_parts),
+                difficulty=difficulty,
+                end_date=end_date,
+                description=_li_parse_description(offer.get("description") or {}),
+            )
+        )
+    return tours
+
+
+# --------------------------------------------------------------------------- #
 # Ausgabe
 # --------------------------------------------------------------------------- #
 
@@ -775,10 +891,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--section",
-        choices=["fn", "rv", "ue", "all"],
+        choices=["fn", "rv", "ue", "li", "all"],
         default="all",
         help="Nur eine Sektion abfragen (fn=Friedrichshafen, rv=Ravensburg, "
-        "ue=Überlingen). Standard: all",
+        "ue=Überlingen, li=Lindau). Standard: all",
     )
     parser.add_argument(
         "--format",
@@ -824,6 +940,12 @@ def main(argv: list[str] | None = None) -> int:
             tours.extend(fetch_ue_tours())
         except requests.RequestException as exc:
             errors.append(f"DAV Überlingen konnte nicht geladen werden: {exc}")
+
+    if args.section in ("li", "all"):
+        try:
+            tours.extend(fetch_li_tours())
+        except requests.RequestException as exc:
+            errors.append(f"DAV Lindau konnte nicht geladen werden: {exc}")
 
     if not args.include_past:
         today = datetime.date.today().isoformat()
