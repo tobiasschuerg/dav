@@ -1,104 +1,6 @@
 {
-  "generated_at": "26.10.2026 10:43",
+  "generated_at": "02.11.2026 13:01",
   "tours": [
-    {
-      "section": "DAV Überlingen",
-      "title": "Kundalini-Yoga Montag",
-      "date": "2026-10-26",
-      "url": "https://www.dav-ueberlingen.de/touren/kundalini-yoga-montag-99/",
-      "time": "",
-      "status": "",
-      "category": "Yoga",
-      "group": "",
-      "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Friedrichshafen",
-      "title": "Hohe Kugel (1645 m) ***",
-      "date": "2026-10-27",
-      "url": "https://www.dav-fn.de/events/tour/Hohe-Kugel-1645-m-/145395",
-      "time": "",
-      "status": "",
-      "category": "Wandern",
-      "group": "Senioren",
-      "difficulty": "T2",
-      "end_date": "",
-      "registration_deadline": "2026-10-25",
-      "description": "Hohe Kugel (1645 m) ***AP: Fraxern, SportplatzTP: Juhe, 8:30 UhrAnmeldung bis 25.10., 18 Uhr"
-    },
-    {
-      "section": "DAV Überlingen",
-      "title": "Athletiktraining Rennmannschaft",
-      "date": "2026-10-28",
-      "url": "https://www.dav-ueberlingen.de/touren/athletiktraining-rennmannschaft-90/",
-      "time": "",
-      "status": "",
-      "category": "Fitness",
-      "group": "",
-      "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Überlingen",
-      "title": "DAV-Fitnesstraining",
-      "date": "2026-10-28",
-      "url": "https://www.dav-ueberlingen.de/touren/dav-fitnesstraining-35/",
-      "time": "",
-      "status": "",
-      "category": "Fitnesstraining",
-      "group": "",
-      "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Überlingen",
-      "title": "Kundalini-Yoga Mittwoch",
-      "date": "2026-10-28",
-      "url": "https://www.dav-ueberlingen.de/touren/kundalini-yoga-mittwoch-149/",
-      "time": "",
-      "status": "",
-      "category": "Yoga",
-      "group": "",
-      "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": ""
-    },
-    {
-      "section": "DAV Lindau",
-      "title": "Winterprogramm - Fitnesstraining mit Michael",
-      "date": "2026-10-29",
-      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/6ac2a154e504993ae3276f48",
-      "time": "18:00 Uhr",
-      "status": "Genug freie Plätze",
-      "category": "",
-      "group": "",
-      "difficulty": "Leicht",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": "Beschreibung: \nGanzkörpertraining - überwiegend ohne Geräte, nur mit dem eigenen Körpergewicht.\nFazit: Bewegung ist das halbe Leben - und steigert die Lebensqualität!\n \nWICHTIG: In den Herbstferien vom 02.-07.11.2026…"
-    },
-    {
-      "section": "DAV Friedrichshafen",
-      "title": "Edelweißfest mit Jubilarehrung",
-      "date": "2026-10-31",
-      "url": "https://www.dav-fn.de/events/tour/Edelweissfest-mit-Jubilarehrung/146065",
-      "time": "",
-      "status": "",
-      "category": "Sektion",
-      "group": "",
-      "difficulty": "",
-      "end_date": "",
-      "registration_deadline": "",
-      "description": "Edelweißfest mit Jubilarehrung  31.10.2026Saal im Graf-Zeppelin-Haus, Beginn: 15:00 Uhr"
-    },
     {
       "section": "DAV Überlingen",
       "title": "Kundalini-Yoga Montag",
@@ -461,6 +363,20 @@
       "difficulty": "",
       "end_date": "",
       "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Ravensburg",
+      "title": "Trailrunning Gruppe Waldläufe 01 - 2026/2027",
+      "date": "2026-11-19",
+      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-01-20262027.html",
+      "time": "17:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Trailrunning",
+      "group": "",
+      "difficulty": "X",
+      "end_date": "",
+      "registration_deadline": "2026-11-18",
       "description": ""
     },
     {
@@ -954,6 +870,20 @@
       "description": ""
     },
     {
+      "section": "DAV Ravensburg",
+      "title": "Trailrunning Gruppe Waldläufe 02 - 2026/2027",
+      "date": "2026-12-17",
+      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-02-20262027.html",
+      "time": "17:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Trailrunning",
+      "group": "",
+      "difficulty": "X",
+      "end_date": "",
+      "registration_deadline": "2026-12-16",
+      "description": ""
+    },
+    {
       "section": "DAV Lindau",
       "title": "Winterprogramm - Fitnesstraining mit Michael",
       "date": "2026-12-17",
@@ -993,6 +923,20 @@
       "difficulty": "ST-L-K2",
       "end_date": "",
       "registration_deadline": "2026-12-17",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "„Plätzchen-„tour Hohe Kugel (1645m)",
+      "date": "2026-12-19",
+      "url": "https://www.dav-ueberlingen.de/touren/schneeschuhtour-hohe-kugel-1645m/",
+      "time": "",
+      "status": "",
+      "category": "Schneeschuh",
+      "group": "",
+      "difficulty": "T1",
+      "end_date": "",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -1094,8 +1038,36 @@
       "description": ""
     },
     {
+      "section": "DAV Überlingen",
+      "title": "Schneeschuhtour Güntlespitze (2092m)",
+      "date": "2027-01-06",
+      "url": "https://www.dav-ueberlingen.de/touren/schneeschuhtour-guentlesspitze-2092m/",
+      "time": "",
+      "status": "",
+      "category": "Schneeschuh",
+      "group": "",
+      "difficulty": "T2",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Safety Camp Hütte  – Au / Damüls 9. & 10.01.2027",
+      "date": "2027-01-08",
+      "url": "https://www.dav-ueberlingen.de/touren/safety-camp-huette-au-damuels-10-11-01-2026/",
+      "time": "",
+      "status": "",
+      "category": "Freeride/Skitour",
+      "group": "",
+      "difficulty": "T1",
+      "end_date": "2027-01-10",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
       "section": "DAV Lindau",
-      "title": "Ausbildung -  Ski-zoo-phren - Einsteigerkurs Skitouren",
+      "title": "Ausbildung -  Ski-zoo - Einsteigerkurs Skitouren",
       "date": "2027-01-09",
       "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/6ac55ed51415391f0ab4ea7f",
       "time": "07:00 Uhr",
@@ -1157,6 +1129,20 @@
       "time": "",
       "status": "",
       "category": "Yoga",
+      "group": "",
+      "difficulty": "",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Kurs: Tourenplanung & Risikomanagement Winter",
+      "date": "2027-01-12",
+      "url": "https://www.dav-ueberlingen.de/touren/theorieabend/",
+      "time": "",
+      "status": "",
+      "category": "Freeride/Schneeschuh/Skihochtour/Skitour",
       "group": "",
       "difficulty": "",
       "end_date": "",
@@ -1245,6 +1231,20 @@
       "difficulty": "T2",
       "end_date": "",
       "registration_deadline": "2027-01-11",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Kurs: Unterwegs mit Schneeschuhen – Planung und Lawinenverschüttetensuche für Anfänger",
+      "date": "2027-01-15",
+      "url": "https://www.dav-ueberlingen.de/touren/kurs-unterwegs-mit-schneeschuhen-planung-und-lawinenverschuettetensuche-fuer-anfaenger/",
+      "time": "",
+      "status": "",
+      "category": "Schneeschuh",
+      "group": "",
+      "difficulty": "T2",
+      "end_date": "2027-01-17",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -1417,6 +1417,20 @@
     },
     {
       "section": "DAV Ravensburg",
+      "title": "Trailrunning Gruppe Waldläufe 03 - 2026/2027",
+      "date": "2027-01-21",
+      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-03-20262027.html",
+      "time": "17:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Trailrunning",
+      "group": "",
+      "difficulty": "X",
+      "end_date": "",
+      "registration_deadline": "2027-01-20",
+      "description": ""
+    },
+    {
+      "section": "DAV Ravensburg",
       "title": "Tiefschneetraining - 2026/2027",
       "date": "2027-01-22",
       "url": "https://www.dav-ravensburg.info/tourdetails/tiefschneetraining-20262027.html",
@@ -1455,6 +1469,34 @@
       "difficulty": "ST-L-K2",
       "end_date": "",
       "registration_deadline": "2027-01-20",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Tagesskitour",
+      "date": "2027-01-24",
+      "url": "https://www.dav-ueberlingen.de/touren/tagesskitour-2/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T1",
+      "end_date": "",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Tagesskitour Tannheimer Tal/Allgäu",
+      "date": "2027-01-24",
+      "url": "https://www.dav-ueberlingen.de/touren/tagesskitour-tannheimer-tal-allgaeu/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T2",
+      "end_date": "",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -1539,6 +1581,20 @@
       "difficulty": "WT2",
       "end_date": "",
       "registration_deadline": "2027-01-25",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Tagesskitour Gargellen",
+      "date": "2027-01-27",
+      "url": "https://www.dav-ueberlingen.de/touren/tagesskitour-gargellen/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T2",
+      "end_date": "",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -1883,7 +1939,7 @@
       "date": "2027-02-11",
       "url": "https://www.dav-ravensburg.info/tourdetails/aufbaukurs-skitouren-20262027.html",
       "time": "06:30 Uhr",
-      "status": "Es gibt noch ein paar Plätze",
+      "status": "Tour ausgebucht",
       "category": "Ausbildung",
       "group": "",
       "difficulty": "X",
@@ -1903,6 +1959,34 @@
       "difficulty": "ST-ZS-K3",
       "end_date": "2027-02-14",
       "registration_deadline": "2027-01-28",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Schneeschuhtage im Prättigau",
+      "date": "2027-02-11",
+      "url": "https://www.dav-ueberlingen.de/touren/schneeschuhtage-im-praettigau/",
+      "time": "",
+      "status": "",
+      "category": "Schneeschuh",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-02-14",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Traumhafte Skirundtour von St. Antönien",
+      "date": "2027-02-12",
+      "url": "https://www.dav-ueberlingen.de/touren/traumhafte-skirundtour-von-st-antoenien/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-02-14",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -2029,6 +2113,20 @@
       "difficulty": "ST-ZS-K2",
       "end_date": "2027-02-21",
       "registration_deadline": "2027-01-31",
+      "description": ""
+    },
+    {
+      "section": "DAV Ravensburg",
+      "title": "Trailrunning Gruppe Waldläufe 04 - 2026/2027",
+      "date": "2027-02-18",
+      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-04-20262027.html",
+      "time": "17:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Trailrunning",
+      "group": "",
+      "difficulty": "X",
+      "end_date": "",
+      "registration_deadline": "2027-02-17",
       "description": ""
     },
     {
@@ -2186,6 +2284,34 @@
       "description": ""
     },
     {
+      "section": "DAV Überlingen",
+      "title": "Skidurchquerung Greina Hochebene",
+      "date": "2027-02-26",
+      "url": "https://www.dav-ueberlingen.de/touren/skidurchquerung-greina-hochebene/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-03-01",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Skihochtourenkurs Wiesbadener Hütte",
+      "date": "2027-02-26",
+      "url": "https://www.dav-ueberlingen.de/touren/skihochtourenkurs-wiesbadener-huette/",
+      "time": "",
+      "status": "",
+      "category": "Skihochtour",
+      "group": "",
+      "difficulty": "T2",
+      "end_date": "2027-02-28",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
       "section": "DAV Ravensburg",
       "title": "Spieleabend - 2026/2027",
       "date": "2027-02-26",
@@ -2197,6 +2323,34 @@
       "difficulty": "X",
       "end_date": "",
       "registration_deadline": "2027-02-17",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Ladies‘ Only: Tourenwochenende in Monstein",
+      "date": "2027-02-27",
+      "url": "https://www.dav-ueberlingen.de/touren/skitourenwochenende-monstein/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-02-28",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Schneeschuhtour Winterstaude (1877m )",
+      "date": "2027-02-27",
+      "url": "https://www.dav-ueberlingen.de/touren/schneeschuhtour-winterstaude-1877m/",
+      "time": "",
+      "status": "",
+      "category": "Schneeschuh",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "",
+      "registration_deadline": "",
       "description": ""
     },
     {
@@ -2494,6 +2648,20 @@
       "description": ""
     },
     {
+      "section": "DAV Überlingen",
+      "title": "Skitourenwochenende im Sellrain",
+      "date": "2027-03-12",
+      "url": "https://www.dav-ueberlingen.de/touren/skitourenwochenende-im-sellrain/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-03-14",
+      "registration_deadline": "",
+      "description": ""
+    },
+    {
       "section": "DAV Lindau",
       "title": "Skitour - Vier Skitourentage auf der Grialetsch-Hütte",
       "date": "2027-03-14",
@@ -2547,6 +2715,20 @@
       "difficulty": "T1",
       "end_date": "",
       "registration_deadline": "2027-03-15",
+      "description": ""
+    },
+    {
+      "section": "DAV Ravensburg",
+      "title": "Trailrunning Gruppe Waldläufe 05 - 2026/2027",
+      "date": "2027-03-18",
+      "url": "https://www.dav-ravensburg.info/tourdetails/trailrunning-gruppe-waldlaeufe-05-20262027.html",
+      "time": "17:30 Uhr",
+      "status": "Genug freie Plätze",
+      "category": "Trailrunning",
+      "group": "",
+      "difficulty": "X",
+      "end_date": "",
+      "registration_deadline": "2027-03-17",
       "description": ""
     },
     {
@@ -2702,6 +2884,20 @@
       "end_date": "",
       "registration_deadline": "",
       "description": "Beschreibung: Sulzberg - Eibele Wasserfälle - Oberstaufen\n\nTourenländer: Deutschland, Österreich\nArt der Tour: Gemeinschaftstour\nKategorie: Wandern\nAngebot für: Senioren\nTourenführer: Klaus Harder\nWeitere Führer:…"
+    },
+    {
+      "section": "DAV Überlingen",
+      "title": "Firnwochenende Davos",
+      "date": "2027-04-09",
+      "url": "https://www.dav-ueberlingen.de/touren/firnwochenende-davos-2/",
+      "time": "",
+      "status": "",
+      "category": "Skitour",
+      "group": "",
+      "difficulty": "T3",
+      "end_date": "2027-04-11",
+      "registration_deadline": "",
+      "description": ""
     },
     {
       "section": "DAV Lindau",
@@ -3079,7 +3275,7 @@
       "difficulty": "Mittel",
       "end_date": "",
       "registration_deadline": "",
-      "description": "Beschreibung: kommt noch\n\nTourenländer: Österreich\nArt der Tour: Gemeinschaftstour\nKategorie: Wandern\nAngebot für: Allgemein\nTourenführer: Martin Kinzel\nWeitere Führer: \nMaximale Teilnehmerzahl: 6\nVorbesprechung: Nein…"
+      "description": "Beschreibung: kommt noch\n\nTourenländer: Österreich\nArt der Tour: Führungstour\nKategorie: Wandern\nAngebot für: Allgemein\nTourenführer: Martin Kinzel\nWeitere Führer: \nMaximale Teilnehmerzahl: 6\nVorbesprechung: Nein…"
     },
     {
       "section": "DAV Lindau",
@@ -3626,6 +3822,20 @@
       "end_date": "2027-10-10",
       "registration_deadline": "",
       "description": "Beschreibung: Mit dem Zug in die Berge, eine Übernachtung auf der Lindauer Hütte und mit dem ÖPNV wieder zurück. Auffahrten primär auf Fahrwegen. Abfahrten meist auf Singletrails. Um in die Schweiz zu gelangen bzw.…"
+    },
+    {
+      "section": "DAV Lindau",
+      "title": "Hüttenabschluss 2027 - SAFE THE DATE - Anmeldung hier nicht möglich",
+      "date": "2027-10-10",
+      "url": "https://widgets.yolawo.de/w/62ee6fbe4c60f56af607bb46/offers/6adfb05e0b29d78866eb48d8",
+      "time": "10:00 Uhr",
+      "status": "",
+      "category": "Sektion/Bergsteigen/Wandern/Klettern/Familie/Mountainbike",
+      "group": "Senioren/Jugend",
+      "difficulty": "",
+      "end_date": "2027-10-11",
+      "registration_deadline": "",
+      "description": "Beschreibung: Am Samstag feiern wir gemeinsam unseren Hüttenabschluss mit allen Ressorts.\nAuch in diesem Jahr übernachten Kinder kostenlos. Es wird lediglich eine geringe Pauschale \nvon 6  Euro pro Kind zur Deckung der…"
     },
     {
       "section": "DAV Lindau",
