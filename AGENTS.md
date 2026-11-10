@@ -24,8 +24,11 @@ Alle vier Quellen sind undokumentierte, aber öffentlich zugängliche
 Implementierungsdetails der jeweiligen Websites – bei Layout- oder
 Systemwechseln der Seiten kann das Tool angepasst werden müssen.
 
-- **Friedrichshafen** (dav-fn.de): Die Übersichtsseite
-  `/programm_neu_so26/gesamt` ist eine Vue-Single-Page-App, bettet aber ein
+- **Friedrichshafen** (dav-fn.de): Jede Saison bekommt ein eigenes Programm
+  unter `/programm_neu_<saison>` (z.B. `so26`). Welche Programme aktuell sind,
+  wird aus den Links der Startseite ermittelt (`fetch_fn_program_paths()`);
+  beim Saisonwechsel werden alle verlinkten Programme zusammengeführt. Die
+  Übersichtsseite `<programm>/gesamt` ist eine Vue-Single-Page-App, bettet aber ein
   `schema.org`-JSON-LD `ItemList` mit allen Tour-Detail-URLs serverseitig ein.
   Jede Detailseite liefert ihrerseits vollständige JSON-LD-Daten (Titel,
   Datum, Beschreibung), die abgerufen werden. Die Tourart steht auf keiner

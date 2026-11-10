@@ -50,8 +50,14 @@ REQUEST_TIMEOUT = 20
 MIN_REQUEST_INTERVAL = 0.2
 
 FN_BASE_URL = "https://www.dav-fn.de"
-FN_LIST_PATH = "/programm_neu_so26/gesamt"
-FN_CATEGORY_BASE_PATH = "/programm_neu_so26/bergsportarten"
+# Friedrichshafen legt pro Saison ein eigenes Programm unter
+# /programm_neu_<saison> an (z.B. "so26" für Sommer 2026). Die aktuellen
+# Programme werden aus den Links der Startseite ermittelt; dieser Pfad dient nur
+# als Fallback, falls dort keiner gefunden wird.
+FN_FALLBACK_PROGRAM_PATH = "/programm_neu_so26"
+_FN_PROGRAM_LINK_RE = re.compile(r'href="(/programm_neu_[A-Za-z0-9_-]+)[/"]')
+FN_LIST_SUBPATH = "/gesamt"
+FN_CATEGORY_SUBPATH = "/bergsportarten"
 FN_CATEGORIES = {
     "wandern": "Wandern",
     "bergsteigen": "Bergsteigen",
@@ -60,7 +66,7 @@ FN_CATEGORIES = {
     "mountainbiken": "Mountainbike",
 }
 
-FN_GROUP_BASE_PATH = "/programm_neu_so26/gemeinsam"
+FN_GROUP_SUBPATH = "/gemeinsam"
 FN_GROUPS = {
     "familien-events": "Familiengruppe",
     "alpinplus-events": "Alpin +",
@@ -254,20 +260,32 @@ def _extract_ld_json_blocks(html: str) -> list[dict[str, Any]]:
     return blocks
 
 
-def fetch_fn_tour_urls(session: requests.Session) -> list[str]:
-    resp = session.get(FN_BASE_URL + FN_LIST_PATH, timeout=REQUEST_TIMEOUT)
+def fetch_fn_program_paths(session: requests.Session) -> list[str]:
+    """Ermittelt die aktuell verlinkten Saisonprogramme (z.B. ["/programm_neu_so26"]).
+
+    Beim Saisonwechsel können vorübergehend zwei Programme (auslaufendes Sommer-
+    und neues Winterprogramm) verlinkt sein; dann werden beide abgefragt.
+    """
+    resp = session.get(FN_BASE_URL + "/", timeout=REQUEST_TIMEOUT)
     resp.raise_for_status()
-    urls: list[str] = []
-    seen: set[str] = set()
-    for block in _extract_ld_json_blocks(resp.text):
-        if block.get("@type") != "ItemList":
-            continue
-        for item in block.get("itemListElement", []):
-            url = item.get("url")
-            if url and url not in seen:
-                seen.add(url)
-                urls.append(url)
-    return urls
+    programs = list(dict.fromkeys(_FN_PROGRAM_LINK_RE.findall(resp.text)))
+    if not programs:
+        print(
+            "Warnung: Kein Tourenprogramm auf der FN-Startseite gefunden, nutze "
+            f"Fallback {FN_FALLBACK_PROGRAM_PATH}.",
+            file=sys.stderr,
+        )
+        programs = [FN_FALLBACK_PROGRAM_PATH]
+    return programs
+
+
+def fetch_fn_tour_urls(session: requests.Session, programs: list[str]) -> list[str]:
+    # Ohne Fehlerbehandlung: Fällt eine Übersichtsseite aus, soll der Abruf
+    # scheitern statt unbemerkt Touren zu verlieren.
+    urls = []
+    for program in programs:
+        urls += _fetch_fn_itemlist_urls(session, program + FN_LIST_SUBPATH)
+    return list(dict.fromkeys(urls))
 
 
 _FN_MONTHS_PATTERN = "|".join(m.capitalize() for m in _GERMAN_MONTHS)
@@ -450,19 +468,32 @@ def _fetch_fn_label_map(
     }
 
 
-def fetch_fn_category_map(session: requests.Session) -> dict[str, str]:
-    return _fetch_fn_label_map(session, FN_CATEGORY_BASE_PATH, FN_CATEGORIES)
+def fetch_fn_category_map(session: requests.Session, programs: list[str]) -> dict[str, str]:
+    merged: dict[str, str] = {}
+    for program in programs:
+        for url, label in _fetch_fn_label_map(
+            session, program + FN_CATEGORY_SUBPATH, FN_CATEGORIES
+        ).items():
+            merged.setdefault(url, label)
+    return merged
 
 
-def fetch_fn_group_map(session: requests.Session) -> dict[str, str]:
-    return _fetch_fn_label_map(session, FN_GROUP_BASE_PATH, FN_GROUPS, max_labels=3)
+def fetch_fn_group_map(session: requests.Session, programs: list[str]) -> dict[str, str]:
+    merged: dict[str, str] = {}
+    for program in programs:
+        for url, label in _fetch_fn_label_map(
+            session, program + FN_GROUP_SUBPATH, FN_GROUPS, max_labels=3
+        ).items():
+            merged.setdefault(url, label)
+    return merged
 
 
 def fetch_fn_tours(max_workers: int = 8) -> list[Tour]:
     session = _session()
-    paths = fetch_fn_tour_urls(session)
-    category_map = fetch_fn_category_map(session)
-    group_map = fetch_fn_group_map(session)
+    programs = fetch_fn_program_paths(session)
+    paths = fetch_fn_tour_urls(session, programs)
+    category_map = fetch_fn_category_map(session, programs)
+    group_map = fetch_fn_group_map(session, programs)
     tours: list[Tour] = []
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
