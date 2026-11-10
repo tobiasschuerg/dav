@@ -223,9 +223,15 @@ def main(argv: list[str] | None = None) -> int:
 
     tours = fetch_all_tours()
     payload = build_payload(tours)
-    tours_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    tours_path.write_text(dump_payload(payload), encoding="utf-8", newline="\n")
+
+    if args.summary_file:
+        old_tours = (existing or {}).get("tours") or []
+        summary = summarize_changes(
+            old_tours, payload["tours"], datetime.date.today().isoformat()
+        )
+        Path(args.summary_file).write_text(summary, encoding="utf-8")
+        print(summary)
 
     print(f"{len(tours)} Touren -> {tours_path} (Template -> {index_path})")
     return 0
