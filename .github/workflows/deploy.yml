@@ -33,7 +33,10 @@ jobs:
         run: pip install requests
 
       - name: Generate site
-        run: python3 generate_site.py --output-dir docs ${{ inputs.force && '--force' || '' }}
+        run: >-
+          python3 generate_site.py --output-dir docs
+          --summary-file "$RUNNER_TEMP/changes.txt"
+          ${{ inputs.force && '--force' || '' }}
 
       - name: Commit and push if changed
         run: |
@@ -43,6 +46,13 @@ jobs:
           if git diff --cached --quiet; then
             echo "Keine Änderungen am Tourenprogramm."
           else
-            git commit -m "chore(data): Tourenprogramm aktualisiert ($(date -u +'%Y-%m-%d'))"
+            msg="$RUNNER_TEMP/commit-msg.txt"
+            echo "chore(data): Tourenprogramm aktualisiert ($(date -u +'%Y-%m-%d'))" > "$msg"
+            if [ -s "$RUNNER_TEMP/changes.txt" ]; then
+              echo >> "$msg"
+              cat "$RUNNER_TEMP/changes.txt" >> "$msg"
+              cat "$RUNNER_TEMP/changes.txt" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            git commit -F "$msg"
             git push
           fi

@@ -108,6 +108,11 @@ das ist der einzige Grund, warum diese Route funktioniert, und darf beim
 - `generate_site.py` überspringt den Datenabruf, wenn die bestehende
   `tours.json` (Zeitstempel `generated_at`) jünger als 2 Stunden ist;
   `--force` erzwingt einen Refresh unabhängig vom Alter.
+- `tours.json` wird bewusst mit **einer Tour pro Zeile** geschrieben
+  (`dump_payload()` in `generate_site.py`), damit Daten-Commits pro Tour
+  genau eine +/- Zeile ergeben. Zusätzlich schreibt der CI-Lauf über
+  `--summary-file` eine Übersicht (neu/entfernt/geändert/vergangen, Zuordnung
+  per URL) in die Commit-Message und die Job-Summary.
 - `fetch_all_tours()` bricht bewusst ab (ohne zu committen), wenn eine
   Sektion verdächtig wenige Touren liefert (`MIN_TOURS_PER_SECTION`) – das
   hat einmal einen Abruffehler abgefangen, der sonst unbemerkt eine Sektion

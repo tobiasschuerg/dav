@@ -22,6 +22,9 @@ TEMPLATE_PATH = Path(__file__).parent / "site" / "template.html"
 MAX_DESCRIPTION_LENGTH = 220
 MIN_TOURS_PER_SECTION = 5
 MIN_REFRESH_INTERVAL = datetime.timedelta(hours=2)
+# Maximale Anzahl einzeln aufgeführter Touren je Gruppe in der Änderungs-
+# zusammenfassung; der Rest wird nur gezählt, damit Commit-Messages lesbar bleiben.
+MAX_SUMMARY_ITEMS = 40
 
 
 def _trim_description(text: str) -> str:
@@ -58,14 +61,107 @@ def fetch_all_tours() -> list[dav_touren.Tour]:
     return tours
 
 
-def _existing_generated_at(tours_path: Path) -> datetime.datetime | None:
+def _read_existing(tours_path: Path) -> dict | None:
     if not tours_path.exists():
         return None
     try:
-        data = json.loads(tours_path.read_text(encoding="utf-8"))
-        return datetime.datetime.strptime(data["generated_at"], "%d.%m.%Y %H:%M")
-    except (json.JSONDecodeError, KeyError, ValueError, OSError):
+        return json.loads(tours_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
         return None
+
+
+def _existing_generated_at(existing: dict | None) -> datetime.datetime | None:
+    if existing is None:
+        return None
+    try:
+        return datetime.datetime.strptime(existing["generated_at"], "%d.%m.%Y %H:%M")
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def dump_payload(payload: dict) -> str:
+    """Serialisiert die Daten mit genau einer Tour pro Zeile.
+
+    So ergibt im Git-Diff jede neue/entfernte Tour genau eine +/- Zeile und jede
+    geänderte Tour genau ein Zeilenpaar, statt dass git die vielen identischen
+    Zeilen eingerückter Objekte (z.B. ``"group": ""``) falsch zuordnet. Das
+    Ergebnis bleibt gewöhnliches JSON.
+    """
+    lines = [
+        "{",
+        f'  "generated_at": {json.dumps(payload["generated_at"], ensure_ascii=False)},',
+        '  "tours": [',
+    ]
+    tours = payload["tours"]
+    for i, tour in enumerate(tours):
+        sep = "," if i < len(tours) - 1 else ""
+        lines.append(
+            "    " + json.dumps(tour, ensure_ascii=False, separators=(",", ":")) + sep
+        )
+    lines += ["  ]", "}"]
+    return "\n".join(lines) + "\n"
+
+
+def _tour_key(tour: dict) -> str:
+    return tour.get("url") or f'{tour.get("section")}|{tour.get("date")}|{tour.get("title")}'
+
+
+def _tour_label(tour: dict) -> str:
+    section = (tour.get("section") or "").removeprefix("DAV ")
+    return f'{tour.get("date") or "?":10}  {section}: {tour.get("title")}'
+
+
+def _limited(lines: list[str]) -> list[str]:
+    if len(lines) <= MAX_SUMMARY_ITEMS:
+        return lines
+    rest = len(lines) - MAX_SUMMARY_ITEMS
+    return lines[:MAX_SUMMARY_ITEMS] + [f"  … und {rest} weitere"]
+
+
+def summarize_changes(old_tours: list[dict], new_tours: list[dict], today: str) -> str:
+    """Kurze, menschenlesbare Zusammenfassung der Datenänderungen (für die
+    Commit-Message des CI-Laufs). Touren werden über ihre URL zugeordnet."""
+    old = {_tour_key(t): t for t in old_tours}
+    new = {_tour_key(t): t for t in new_tours}
+
+    added = [new[k] for k in new if k not in old]
+    removed = [old[k] for k in old if k not in new]
+    past = [t for t in removed if t.get("date") and t["date"] < today]
+    dropped = [t for t in removed if not (t.get("date") and t["date"] < today)]
+
+    changed: list[str] = []
+    for key, tour in new.items():
+        before = old.get(key)
+        if before is None or before == tour:
+            continue
+        diffs = []
+        for field in tour:
+            a, b = before.get(field, ""), tour.get(field, "")
+            if a == b:
+                continue
+            if field == "description":
+                diffs.append("Beschreibung geändert")
+            else:
+                diffs.append(f"{field}: {json.dumps(a, ensure_ascii=False)} → "
+                             f"{json.dumps(b, ensure_ascii=False)}")
+        changed.append(f"  ~ {_tour_label(tour)}\n      " + "; ".join(diffs))
+
+    def section(title: str, lines: list[str]) -> str:
+        return title + "\n" + "\n".join(_limited(lines))
+
+    parts = [
+        f"+{len(added)} neu, −{len(dropped)} entfernt, ~{len(changed)} geändert, "
+        f"{len(past)} vergangen"
+    ]
+    if added:
+        parts.append(section("Neu:", [
+            f"  + {_tour_label(t)}" for t in sorted(added, key=_tour_label)]))
+    if dropped:
+        parts.append(section("Entfernt:", [
+            f"  - {_tour_label(t)}" for t in sorted(dropped, key=_tour_label)]))
+    if changed:
+        parts.append(section("Geändert:", changed))
+    return "\n\n".join(parts) + "\n"
 
 
 def build_payload(tours: list[dav_touren.Tour]) -> dict:
@@ -92,6 +188,12 @@ def main(argv: list[str] | None = None) -> int:
         help="Touren auch dann neu abrufen, wenn die bestehenden Daten jünger als "
         f"{MIN_REFRESH_INTERVAL} sind.",
     )
+    parser.add_argument(
+        "--summary-file",
+        help="Schreibt eine Zusammenfassung der Änderungen (neu/entfernt/geändert) "
+        "gegenüber der bisherigen tours.json in diese Datei, z.B. für die "
+        "Commit-Message.",
+    )
     args = parser.parse_args(argv)
 
     output_dir = Path(args.output_dir)
@@ -108,7 +210,8 @@ def main(argv: list[str] | None = None) -> int:
     index_path.write_text(template_html, encoding="utf-8")
     not_found_path.write_text(template_html, encoding="utf-8")
 
-    last_generated = _existing_generated_at(tours_path)
+    existing = _read_existing(tours_path)
+    last_generated = _existing_generated_at(existing)
     if not args.force and last_generated is not None:
         age = datetime.datetime.now() - last_generated
         if age < MIN_REFRESH_INTERVAL:
