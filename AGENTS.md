@@ -25,19 +25,28 @@ Implementierungsdetails der jeweiligen Websites – bei Layout- oder
 Systemwechseln der Seiten kann das Tool angepasst werden müssen.
 
 - **Friedrichshafen** (dav-fn.de): Jede Saison bekommt ein eigenes Programm
-  unter `/programm_neu_<saison>` (z.B. `so26`). Welche Programme aktuell sind,
-  wird aus den Links der Startseite ermittelt (`fetch_fn_program_paths()`);
-  beim Saisonwechsel werden alle verlinkten Programme zusammengeführt. Die
-  Übersichtsseite `<programm>/gesamt` ist eine Vue-Single-Page-App, bettet aber ein
-  `schema.org`-JSON-LD `ItemList` mit allen Tour-Detail-URLs serverseitig ein.
-  Jede Detailseite liefert ihrerseits vollständige JSON-LD-Daten (Titel,
-  Datum, Beschreibung), die abgerufen werden. Die Tourart steht auf keiner
-  dieser Seiten; sie wird über die fünf Bergsportart-Unterseiten
-  (Wandern, Bergsteigen, Klettern, Skibergsteigen, Mountainbike) ermittelt,
-  die jeweils nur ihre eigenen Touren als JSON-LD listen. Die
-  Gruppenzugehörigkeit (Familiengruppe, Alpin+, Seniorengruppe, ...) wird
-  analog über die "gemeinsam"-Unterseiten pro Gruppe ermittelt und getrennt
-  von der Tourart im eigenen `group`-Feld geführt.
+  (z.B. `/programm_neu_so26`, `/Programm_Winter_2026-27`). Welche Programme
+  aktuell sind, wird aus den Links der Startseite ermittelt
+  (`fetch_fn_program_paths()`); beim Saisonwechsel werden alle verlinkten
+  Programme zusammengeführt, nicht mehr existierende (404) übersprungen.
+  `fetch_fn_tours()` entscheidet pro Programm über die Quelle:
+  - **KV-Manager** (ab Winter 2026/27): Die Programmseite bettet ein Widget von
+    `reservierung.kv-manager.de` ein. Dessen Kurse kommen strukturiert (Datum,
+    Kategorie, Gruppe, Technik, Anmeldefrist, Restplätze) und paginiert aus
+    `api.kv-manager.de/api/widgets/<id>/courses`. Das Widget hat keine
+    Deep-Links pro Kurs; die Tour-URL ist daher die Programmseite mit Anker
+    `#kurs-<id>`. Mapping der Felder in `FN_KV_CATEGORIES`/`FN_KV_GROUPS`.
+  - **JSON-LD** (Programme bis Sommer 2026): Die
+    Übersichtsseite `<programm>/gesamt` ist eine Vue-Single-Page-App, bettet aber ein
+    `schema.org`-JSON-LD `ItemList` mit allen Tour-Detail-URLs serverseitig ein.
+    Jede Detailseite liefert ihrerseits vollständige JSON-LD-Daten (Titel,
+    Datum, Beschreibung), die abgerufen werden. Die Tourart steht auf keiner
+    dieser Seiten; sie wird über die fünf Bergsportart-Unterseiten
+    (Wandern, Bergsteigen, Klettern, Skibergsteigen, Mountainbike) ermittelt,
+    die jeweils nur ihre eigenen Touren als JSON-LD listen. Die
+    Gruppenzugehörigkeit (Familiengruppe, Alpin+, Seniorengruppe, ...) wird
+    analog über die "gemeinsam"-Unterseiten pro Gruppe ermittelt und getrennt
+    von der Tourart im eigenen `group`-Feld geführt.
 - **Ravensburg** (dav-ravensburg.info): Nutzt die TYPO3-Extension `we_tour`.
   Deren Kalender-Listenansicht wird über den internen AJAX-Endpunkt
   `/we_tour.ajax` abgefragt und die zurückgelieferte HTML-Tabelle geparst.
@@ -83,7 +92,9 @@ leer wenn unbekannt):
   JSON-LD. Ravensburg, Überlingen und Lindau zeigen Datumsspannen, aus denen
   das Enddatum geparst wird.
 - **Anmeldefrist**: Bei Ravensburg steht "Datum Ende Anmeldung:" strukturiert
-  auf der Detailseite und ist zuverlässig. Bei Friedrichshafen wird die
+  auf der Detailseite und ist zuverlässig, ebenso bei Friedrichshafen-Kursen
+  mit KV-Manager-Online-Anmeldung (`bookableUntil`). Sonst wird bei
+  Friedrichshafen die
   Beschreibung nach Mustern wie "Anmeldung bis 11.10., 18 Uhr" oder
   "Anmeldung und VB: 15. Oktober" durchsucht – das ist Freitext einzelner
   Tourenleiter*innen und daher Best-Effort, keine Garantie. Für Überlingen und

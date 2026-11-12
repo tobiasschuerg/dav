@@ -50,12 +50,42 @@ REQUEST_TIMEOUT = 20
 MIN_REQUEST_INTERVAL = 0.2
 
 FN_BASE_URL = "https://www.dav-fn.de"
-# Friedrichshafen legt pro Saison ein eigenes Programm unter
-# /programm_neu_<saison> an (z.B. "so26" für Sommer 2026). Die aktuellen
+# Friedrichshafen legt pro Saison ein eigenes Programm an, z.B.
+# /programm_neu_so26 (Sommer 2026) oder /Programm_Winter_2026-27. Die aktuellen
 # Programme werden aus den Links der Startseite ermittelt; dieser Pfad dient nur
 # als Fallback, falls dort keiner gefunden wird.
-FN_FALLBACK_PROGRAM_PATH = "/programm_neu_so26"
-_FN_PROGRAM_LINK_RE = re.compile(r'href="(/programm_neu_[A-Za-z0-9_-]+)[/"]')
+FN_FALLBACK_PROGRAM_PATH = "/Programm_Winter_2026-27"
+_FN_PROGRAM_LINK_RE = re.compile(r'href="(/(?:programm_neu_|Programm_)[A-Za-z0-9_-]+)[/"]')
+# Seit dem Winter 2026/27 bettet die Programmseite statt der JSON-LD-Liste ein
+# Widget des Kursverwaltungssystems KV-Manager ein, das seine Kurse per JSON von
+# api.kv-manager.de lädt.
+_FN_KV_WIDGET_RE = re.compile(
+    r"reservierung\.kv-manager\.de/(?:widgets/|[^\"'\s]*[?&]widget=)([0-9a-f-]{36})"
+)
+FN_KV_API_URL = "https://api.kv-manager.de/api/widgets/{widget_id}/courses"
+# KV-Manager-Kategorien (Feld F006) -> sektionsübergreifende Tourart.
+FN_KV_CATEGORIES = {
+    "skitourengehen": "Skitour",
+    "skihochtourengehen": "Skihochtour",
+    "schneeschuhgehen": "Schneeschuh",
+    "alpines skilaufen": "Skialpin",
+    "freeriden": "Freeride",
+    "sportklettern": "Klettern",
+    "nicht festgelegt": "",
+}
+# KV-Manager-"Veranstaltungstyp/Gruppe" (Feld F004): Gruppen -> group-Feld,
+# Sektionskurse -> Tourart "Ausbildung"; reine Typangaben ("Sektionstour", ...)
+# tragen keine zusätzliche Information und entfallen.
+FN_KV_GROUPS = {
+    "familiengruppe": "Familiengruppe",
+    "alpinplus": "Alpin +",
+    "der rucksack": "Der Rucksack",
+    "dienstag-seniorengruppe": "Senioren",
+    "mittwoch-seniorengruppe": "Senioren",
+    "nga - next generation alpin": "NGA",
+}
+FN_KV_COURSE_TYPES = {"sektionskurs": "Ausbildung"}
+_FN_KV_SKIP_TITLE_RE = re.compile(r"testkurs|bitte nicht buchen", re.I)
 FN_LIST_SUBPATH = "/gesamt"
 FN_CATEGORY_SUBPATH = "/bergsportarten"
 FN_CATEGORIES = {
@@ -261,10 +291,12 @@ def _extract_ld_json_blocks(html: str) -> list[dict[str, Any]]:
 
 
 def fetch_fn_program_paths(session: requests.Session) -> list[str]:
-    """Ermittelt die aktuell verlinkten Saisonprogramme (z.B. ["/programm_neu_so26"]).
+    """Ermittelt die verlinkten Saisonprogramme (z.B. ["/Programm_Winter_2026-27"]).
 
     Beim Saisonwechsel können vorübergehend zwei Programme (auslaufendes Sommer-
-    und neues Winterprogramm) verlinkt sein; dann werden beide abgefragt.
+    und neues Winterprogramm) verlinkt sein; dann werden beide abgefragt. Die
+    Startseite verlinkt teils noch Programme, die bereits entfernt sind - das
+    wird erst beim Abruf in fetch_fn_tours() erkannt.
     """
     resp = session.get(FN_BASE_URL + "/", timeout=REQUEST_TIMEOUT)
     resp.raise_for_status()
@@ -291,6 +323,7 @@ def fetch_fn_tour_urls(session: requests.Session, programs: list[str]) -> list[s
 _FN_MONTHS_PATTERN = "|".join(m.capitalize() for m in _GERMAN_MONTHS)
 _FN_ANMELDUNG_RE = re.compile(
     r"Anmeldung(?:\s+per\s+\w+)?(?:\s+und\s+VB)?\s*(?:bis)?\s*:?\s*"
+    r"(?:(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?,?\s*)?"
     rf"(\d{{1,2}})\.\s*(?:(\d{{1,2}})\.|({_FN_MONTHS_PATTERN}))"
 )
 
@@ -488,9 +521,144 @@ def fetch_fn_group_map(session: requests.Session, programs: list[str]) -> dict[s
     return merged
 
 
+def _free_places_status(free: int | None, capacity: int | None) -> str:
+    """Grobe Statuseinschätzung aus Restplätzen, im Wortlaut der Statusfilter der Seite.
+
+    Eine Kapazität von 0/None bedeutet eine reine Ankündigung ohne
+    Buchungskontingent, keine ausgebuchte Tour.
+    """
+    if free is None or not capacity:
+        return ""
+    if free <= 0:
+        return "Tour ausgebucht"
+    if free <= 3:
+        return "Es gibt noch ein paar Plätze"
+    return "Genug freie Plätze"
+
+
+def _fn_kv_course_to_tour(
+    course: dict[str, Any], page_url: str, fields: dict[str, str]
+) -> Tour | None:
+    """Wandelt einen KV-Manager-Kurs in eine Tour um.
+
+    fields bildet die Filter-Labels des Widgets ("Technik", "Kondition") auf
+    ihre internen Feldnamen (custom_<id>) ab, die sich je Mandant unterscheiden.
+    """
+    title = (course.get("F002") or "").strip()
+    date = course.get("date_start") or ""
+    if not title or not date or course.get("is_cancelled") or _FN_KV_SKIP_TITLE_RE.search(title):
+        return None
+    end_date = course.get("date_end") or ""
+    if end_date == date:
+        end_date = ""
+
+    categories: list[str] = []
+    for part in (course.get("F006") or "").split("|"):
+        part = part.strip()
+        category = FN_KV_CATEGORIES.get(part.lower(), part)
+        if category:
+            categories.append(category)
+    groups: list[str] = []
+    for part in (course.get("F004") or "").split("|"):
+        key = part.strip().lower()
+        if key in FN_KV_GROUPS:
+            groups.append(FN_KV_GROUPS[key])
+        elif key in FN_KV_COURSE_TYPES:
+            categories.append(FN_KV_COURSE_TYPES[key])
+    group = "/".join(dict.fromkeys(groups))
+    category = "/".join(dict.fromkeys(categories)) or _fn_category_fallback(title, group)
+
+    technik = (course.get(fields.get("Technik", "")) or "").strip()
+    kondition = (course.get(fields.get("Kondition", "")) or "").strip()
+    description = (course.get("F005") or "").strip()
+    if kondition:
+        description = f"{description}\n\nKondition: {kondition}".strip()
+
+    # Mit aktivierter Online-Anmeldung ist bookableUntil die echte Anmeldefrist;
+    # bei "Anmeldung direkt beim Organisator" ist das Feld oft nur ein
+    # Platzhalter (z.B. das ursprüngliche Tourdatum), dort hilft nur der Freitext.
+    online = bool(course.get("registration_enabled"))
+    if online and course.get("bookableUntil"):
+        deadline = course["bookableUntil"][:10]
+    else:
+        deadline = _parse_fn_registration_deadline(description, date)
+
+    time_from = course.get("timeFrom") or ""
+    return Tour(
+        section="DAV Friedrichshafen",
+        title=title,
+        date=date,
+        # Das Widget hat keine Deep-Links pro Kurs; der Anker hält die URL je
+        # Tour eindeutig (die Update-Zusammenfassung ordnet Touren per URL zu).
+        url=f"{page_url}#kurs-{course['id']}",
+        time=f"{time_from} Uhr" if time_from and time_from != "00:00" else "",
+        status=_free_places_status(course.get("freePlaces"), course.get("plannedParticipants"))
+        if online
+        else "",
+        category=category,
+        group=group,
+        difficulty=technik.capitalize(),
+        end_date=end_date,
+        registration_deadline=deadline,
+        description=description,
+    )
+
+
+def fetch_fn_kv_tours(session: requests.Session, program: str, widget_id: str) -> list[Tour]:
+    """Ruft alle Kurse eines KV-Manager-Widgets ab (paginiert, je 50 Kurse)."""
+    courses: list[dict[str, Any]] = []
+    fields: dict[str, str] = {}
+    page = 1
+    while True:
+        resp = session.get(
+            FN_KV_API_URL.format(widget_id=widget_id),
+            params={"page": page},
+            headers={"Accept": "application/json"},
+            timeout=REQUEST_TIMEOUT,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        courses += data.get("courses") or []
+        for flt in data.get("visitor_filters") or []:
+            fields.setdefault(flt.get("label", ""), flt.get("field", ""))
+        if not data.get("has_more"):
+            break
+        page += 1
+    page_url = FN_BASE_URL + program
+    tours = (_fn_kv_course_to_tour(c, page_url, fields) for c in courses)
+    return [t for t in tours if t is not None]
+
+
 def fetch_fn_tours(max_workers: int = 8) -> list[Tour]:
     session = _session()
-    programs = fetch_fn_program_paths(session)
+    tours: list[Tour] = []
+    seen_widgets: set[str] = set()
+    legacy_programs: list[str] = []
+    for program in fetch_fn_program_paths(session):
+        resp = session.get(FN_BASE_URL + program, timeout=REQUEST_TIMEOUT)
+        if resp.status_code == 404:
+            # Die Startseite verlinkt ausgelaufene Programme teils noch eine
+            # Weile (z.B. /programm_neu_so26 nach Start des Winterprogramms).
+            print(f"Warnung: FN-Programm {program} existiert nicht mehr, übersprungen.", file=sys.stderr)
+            continue
+        resp.raise_for_status()
+        widget_ids = [w for w in dict.fromkeys(_FN_KV_WIDGET_RE.findall(resp.text)) if w not in seen_widgets]
+        if widget_ids:
+            # Haupt- und Detailansicht eines Programms nutzen verschiedene
+            # Widgets mit denselben Kursen; eines genügt.
+            seen_widgets.update(widget_ids)
+            tours += fetch_fn_kv_tours(session, program, widget_ids[0])
+        elif not _FN_KV_WIDGET_RE.search(resp.text):
+            legacy_programs.append(program)
+    if legacy_programs:
+        tours += _fetch_fn_legacy_tours(session, legacy_programs, max_workers)
+    return tours
+
+
+def _fetch_fn_legacy_tours(
+    session: requests.Session, programs: list[str], max_workers: int
+) -> list[Tour]:
+    """Programme bis Sommer 2026: JSON-LD-Übersicht plus eine Detailseite pro Tour."""
     paths = fetch_fn_tour_urls(session, programs)
     category_map = fetch_fn_category_map(session, programs)
     group_map = fetch_fn_group_map(session, programs)
@@ -826,16 +994,9 @@ def _li_status(next_bookable: dict[str, Any] | None) -> str:
     if not next_bookable:
         return ""
     capacity = next_bookable.get("capacity") or {}
-    free = capacity.get("freePlaces")
     # maxLimit von 0 sind reine Ankündigungen ohne Buchungskontingent (z.B.
     # "Save the date"-Platzhalter), keine tatsächlich ausgebuchten Touren.
-    if free is None or not capacity.get("maxLimit"):
-        return ""
-    if free <= 0:
-        return "Tour ausgebucht"
-    if free <= 3:
-        return "Es gibt noch ein paar Plätze"
-    return "Genug freie Plätze"
+    return _free_places_status(capacity.get("freePlaces"), capacity.get("maxLimit"))
 
 
 def _li_local_date(iso_ts: str) -> datetime.datetime:
